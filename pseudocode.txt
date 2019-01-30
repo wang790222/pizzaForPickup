@@ -1,0 +1,27 @@
+-----------HOME PAGE----------------
+ButtonPizzaHeader('/') {
+  reveals pizza order box - allows client to specify pizza requirments
+      -pizza order box has a delete or cancel button that deletes or removes that specific pizza
+  each new click of the button creates a pizza order box
+
+}
+
+ButtonORDER("/"){
+  put order in orderdatabase
+  retrieve the ordernumber
+  redirect to "/:ordernuber"
+
+}
+
+
+------------customer submission page------------------
+onbuttonSubmissionPage("/:ordernumber") {
+  place name and telephone number into orderdatabase under order
+  text restuarant
+
+}
+
+------------resturant orders page----------------------
+onbuttonRestuarantPage("/restuarant") {
+
+}
