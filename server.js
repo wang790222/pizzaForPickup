@@ -43,6 +43,19 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Restaurant page
+app.get("/restaurant", (req, res) => {
+  let templateVars = {};
+  res.render('restaurant');
+})
+
+// Customer page
+app.get("/:id", (req, res) => {
+  let templateVars = {};
+  res.render('confirmation');
+});
+
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
