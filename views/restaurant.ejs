@@ -1,20 +1,67 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>restaurant page</title>
+<% include ./partials/_header %>
+</div>
+    <ul> <h2> 🔥 Orders to Action 🔥</h2>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <p>Orders are listed from most recent to oldest. The estimated default time is calculated but can be overriden. The entered and confirmed time will be sent to the customer. Please ensure you verify the customer upon pick up and before pressing "Picked Up"</p>
+  </ul>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-
-  <body>
-    <h1>restaurant page</h1>
-
-    <p>This is where the the restaurant sees their orders</p>
+    <table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Time</th>
+      <th scope="col">Order Id</th>
+      <th scope="col">Pizza Order</th>
+      <th scope="col">Extra Order</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Customer Number</th>
+      <th scope="col">Estimate Time</th>
+      <th scope="col">Pick Up</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>13:30</td>
+      <td>A2X4F3V</td>
+      <td>{Jason File: Large - Thin - Olives, Mushrooms}</td>
+      <td>{Jason File: Garlic Bread, Soda}</td>
+      <td>Tim</td>
+      <td>4167862345</td>
+      <td> <form class="form-inline"  >
+    <input class="form-control" placeholder="30"></input>
+    <a> &nbsp mins &nbsp</a>
+  </div>
+  <button type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
+</form></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>13:30</td>
+      <td>A2X4F3V</td>
+      <td>{Jason File: Large - Thin - Olives, Mushrooms}</td>
+      <td>{Jason File: Garlic Bread, Soda}</td>
+      <td>Tim</td>
+      <td>4167862345</td>
+      <td> Input field Confirm Button</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>13:30</td>
+      <td>A2X4F3V</td>
+      <td>{Jason File: Large - Thin - Olives, Mushrooms}</td>
+      <td>{Jason File: Garlic Bread, Soda}</td>
+      <td>Tim</td>
+      <td>4167862345</td>
+      <td> 45 mins</td>
+      <td> <button type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button> </td>
+    </tr>
+  </tbody>
+</table>
   </body>
 </html>
