@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+<!-- scripts and css for '+' and '-' buttons in extras form -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
@@ -18,111 +23,244 @@
   <body>
     <h1>New Order</h1>
 
+<!-- NAV TABS FOR PIZZA AND EXTRAS -->
+<!-- TODO: SHOW/HIDE FORMS -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Pizza</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Extras</a>
+      </li>
+    </ul>
 
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Pizza</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Extras</a>
-    </li>
-  </ul>
+    <br>
 
 
+<!-- add container for current items in cart -->
 
 
-  <p>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="false" aria-controls="collapsePizzaForm">
-    Add New Pizza
-  </button>
-  </p>
-  <div class="collapse" id="collapsePizzaForm">
-    <div class="card card-body">
+<!-- add pizza form -->
+    <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="false" aria-controls="collapsePizzaForm">
+      Add New Pizza
+    </button>
+    </p>
+    <div class="collapse" id="collapsePizzaForm">
+      <div class="card card-body">
 
-    <h2>Size</h2>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option1">
-      <label class="form-check-label">Small</label>
+      <h4>Size</h4>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option1">
+        <label class="form-check-label">Small</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option2">
+        <label class="form-check-label">Medium</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option3">
+        <label class="form-check-label">Large</label>
+      </div>
+
+      <br>
+
+      <h4>Crust</h4>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option1">
+        <label class="form-check-label">Thin</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option2">
+        <label class="form-check-label">Regular</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option3">
+        <label class="form-check-label">Stuffed</label>
+      </div>
+
+      <br>
+
+      <h4>Toppings</h4>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option1">
+        <label class="form-check-label">Option 1</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option2">
+        <label class="form-check-label">Option 2</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option3">
+        <label class="form-check-label">Option 3</label>
+      </div>
+          <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option1">
+        <label class="form-check-label">Option 4</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option2">
+        <label class="form-check-label">Option 5</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option3">
+        <label class="form-check-label">Option 6</label>
+      </div>
+          <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option1">
+        <label class="form-check-label">Option 7</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option2">
+        <label class="form-check-label">Option 8</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option3">
+        <label class="form-check-label">Option 9</label>
+      </div>    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" value="option1">
+        <label class="form-check-label">Option 10</label>
+      </div>
+
+      <br>
+
+      <button type="button" class="btn btn-lg btn-primary">Add Pizza</button>
+      <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
+
+      <br>
+
+      </div>
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option2">
-      <label class="form-check-label">Medium</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option3" disabled>
-      <label class="form-check-label">Large (disabled)</label>
-    </div>
 
-    <h2>Crust</h2>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option1">
-      <label class="form-check-label">Thin</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option2">
-      <label class="form-check-label">Regular</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option3" disabled>
-      <label class="form-check-label">Stuffed (disabled)</label>
-    </div>
-
-    <h2>Toppings</h2>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option1">
-      <label class="form-check-label">Option 1</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option2">
-      <label class="form-check-label">Option 2</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option3" disabled>
-      <label class="form-check-label">Option 3 (disabled)</label>
-    </div>
-        <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option1">
-      <label class="form-check-label">Option 4</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option2">
-      <label class="form-check-label">Option 5</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option3" disabled>
-      <label class="form-check-label">Option 6 (disabled)</label>
-    </div>
-        <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option1">
-      <label class="form-check-label">Option 7</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option2">
-      <label class="form-check-label">Option 8</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option3" disabled>
-      <label class="form-check-label">Option 9 (disabled)</label>
-    </div>    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" value="option1">
-      <label class="form-check-label">Option 10</label>
-    </div>
-
-    <button type="button" class="btn btn-lg btn-primary" disabled>Add Pizza</button>
-    <button type="button" class="btn btn-secondary btn-lg" disabled>Cancel</button>
-
-    </div>
-  </div>
+<!-- extras form -->
 
 
 
+<ul>
+  <li>
+    <h4>Garlic Bread</h4>
+    <div class="qty mt-5">
+        <span class="minus bg-dark">-</span>
+        <input type="number" class="count" name="qty" value="1">
+        <span class="plus bg-dark">+</span>
+    </div>
+  </li>
+
+<br>
+
+  <li>
+    <h4>Garlic Dipping Sauce</h4>
+    <div class="qty mt-5">
+        <span class="minus bg-dark">-</span>
+        <input type="number" class="count" name="qty" value="1">
+        <span class="plus bg-dark">+</span>
+    </div>
+  </li>
+
+<br>
+
+  <li>
+    <h4>Greens4Guilt</h4>
+    <div class="qty mt-5">
+        <span class="minus bg-dark">-</span>
+        <input type="number" class="count" name="qty" value="1">
+        <span class="plus bg-dark">+</span>
+    </div>
+  </li>
+
+</ul>
+
+<!-- css to implement (just copy pasta) -->
+
+<!-- .qty .count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px
+    ;min-width: 35px;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+div {
+    text-align: center;
+}
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+}
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{
+    border: 0;
+    width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
+          -->
 
 
+<!-- JS TO IMPLEMENT
+              $(document).ready(function(){
+        $('.count').prop('disabled', true);
+        $(document).on('click','.plus',function(){
+        $('.count').val(parseInt($('.count').val()) + 1 );
+        });
+          $(document).on('click','.minus',function(){
+          $('.count').val(parseInt($('.count').val()) - 1 );
+            if ($('.count').val() == 0) {
+            $('.count').val(1);
+          }
+            });
+    });
 
+ -->
 
+<!-- end of extras form********** -->
 
+<br>
 
+<p>Estimated time: </p>
+<p>Total: </p>
+
+<button type="button" class="btn btn-primary btn-lg btn-block">CHECKOUT</button>
 
 
 
