@@ -15,7 +15,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
-const midtermRoutes = require("./routes/midterm");
+const crustRoutes = require("./routes/crust");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -36,26 +36,74 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/api/midterm", midtermRoutes(knex));
+app.use("/api/crust", crustRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  req.cookies
-  let templateVars = {cookies: req.cookies}
-  console.log("cookies:", req.cookies)
-  res.render("index", templateVars);
+
+  Promise.all([
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("size")
+        .then((results) => {
+          resolve(results);
+      });
+    }),
+
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("crust")
+        .then((results) => {
+          resolve(results);
+      });
+    }),
+
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("topping")
+        .then((results) => {
+          resolve(results);
+      });
+    }),
+
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("extra")
+        .then((results) => {
+          resolve(results);
+      });
+    })
+  ]).then(function(values) {
+
+    const sizes = values[0];
+    const crusts = values[1];
+    const toppings = values[2];
+    const extras = values[3];
+
+    let templateVars = {
+      sizes: sizes,
+      crusts: crusts,
+      toppings: toppings,
+      extras: extras
+    };
+
+    res.render("index", templateVars);
+  });
 });
 
 // Restaurant page
 app.get("/restaurant", (req, res) => {
   let templateVars = {};
   res.render('restaurant');
-})
+});
 
 // Customer page
 app.get("/:id", (req, res) => {
   req.cookies
-  console.log("cookies: ", req.cookies)
   let templateVars = {};
   res.render('confirmation');
 });

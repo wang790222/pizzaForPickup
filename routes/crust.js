@@ -7,14 +7,12 @@ module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     knex
-      .select("*")
+      .select("name")
       .from("crust")
       .then((results) => {
         res.json(results);
     });
   });
 
-
-
   return router;
-}
+};
