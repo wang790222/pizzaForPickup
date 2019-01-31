@@ -51,7 +51,12 @@ app.get("/restaurant", (req, res) => {
   let templateVars = {};
   res.render('restaurant');
 })
-
+app.post("/", (req,res) => {
+  place order in ordersdabase returning the ordernumber and adding ordernumber to localstorage
+  orderInfo = {info: localstorage}
+  clear localstorage
+  res.render('', orderInfo)
+})
 // Customer page
 app.get("/:id", (req, res) => {
   req.cookies
