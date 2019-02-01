@@ -18,27 +18,35 @@
       <th scope="col">Extra Order</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Customer Number</th>
-      <th scope="col">Estimate Time</th>
+      <th scope="col">Confirm Time</th>
       <th scope="col">Pick Up</th>
     </tr>
   </thead>
   <tbody>
+    <% for (i = orders.length - 1 ; i >= 0; i--) {
+    var minutes = orders[i]['time_placed'].getMinutes()
+    if(minutes <= 9) {
+    minutes = "0" + orders[i]['time_placed'].getMinutes()
+    }
+    %>
     <tr>
       <th scope="row"></th>
-      <td>13:30</td>
-      <td>A2X4F3V</td>
-      <td>{Jason File: Large - Thin - Olives, Mushrooms}</td>
-      <td>{Jason File: Garlic Bread, Soda}</td>
-      <td>Tim</td>
-      <td>4167862345</td>
+      <td><%= orders[i]['time_placed'].getHours()%>:<%= minutes
+        %> &nbsp - <%= orders[i]['time_placed'].toLocaleDateString() %></td>
+      <td><%= orders[i]['id'] %></td>
+      <td><%= JSON.stringify(orders[i]['pizza_order']) %></td>
+      <td><%= JSON.stringify(orders[i]['extra']) %></td>
+      <td><%= customers[orders[i]['id']]['name'] %></td>
+      <td><%= customers[orders[i]['id']]['phone'] %></td>
       <td> <form class="form-inline"  >
-    <input id="minutes" class="form-control" placeholder="30"></input>
+    <input id="minutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" ></input>
     <a> &nbsp mins &nbsp</a>
   </div>
   <button type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
 </form></td>
       <td> </td>
     </tr>
+   <% } %>
     <tr>
       <th scope="row"></th>
       <td>13:30</td>
