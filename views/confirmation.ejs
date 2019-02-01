@@ -7,7 +7,6 @@
 
 <span>
 </div>
-<form>
   <div class="container">
     <div class="card">
         <h4>Summary </h4>
@@ -16,29 +15,24 @@
   <li>Estimated Time: 30 mins</li>
 
 
-<input type='button' onclick='location.href('www.cnn.com');' value='redirect'>
-
-
   <h4>  <br> Details for pickup <br> </h4>
-        <form>
+      <form id="customer" action="/customer">
         <div class="form-group">
-          <label for="exampleInputNumber1">Number</label>
-          <input type="number" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" placeholder="Enter Phone Number">
-          <small id="Help" class="form-text text-muted">You will recieve text confirmation of the estimated pickup time. We never share your number with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputName1">Name</label>
-          <input type="name" class="form-control" id="exampleInputName1" placeholder="Name">
+          <label for="phonenumber">Phone Number</label>
+          <input name="phonenumber" type="text" class="form-control" maxlength="10" placeholder="Enter Phone Number">
+          <small text text-muted">You will recieve text confirmation of the estimated pickup time. We never share your number with anyone else.</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputName1">Address or Postcode</label>
-          <input type="name" class="form-control" id="exampleInputName1" placeholder="123 Coding Lane, Toronto, ON, M5V YYZ">
+          <label for="customername" >Name</label>
+          <input name="customername" type="text" class="form-control" maxlength="80" placeholder="Name">
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Agree to terms & conditions</label>
+        <div class="form-group">
+          <label for="postcode">Postcode</label>
+          <input name="postcode" type="text" class="form-control" size="7" maxlength="6" placeholder="M5V1Y2">
         </div>
-        <button type="submit" class="btn btn-warning">Submit</button>
+        <br>
+        <input id="orderdId" name="orderId" type="hidden" value="<%= orderId %>">
+        <button id="confirm" class="btn btn-warning">Confirm Order</button>
       </form>
     </div>
   </div>
