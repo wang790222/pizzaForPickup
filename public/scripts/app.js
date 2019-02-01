@@ -46,4 +46,131 @@ $( document ).ready(function() {
       }
     });
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------ Alter local storage -------------------
+var time = Date.now();
+let order = {
+  //customer_id: 0,
+      time_placed: time,
+      extra: {
+            extra: [],
+            },
+      pizza_order: {
+            crust: "",
+            size: "",
+            toppings: [],
+            },
+      estimated_time: 0,
+      cost: 0
+    };
+var toppingTime = 0
+var toppingCost = 0
+var pizzaTime = 0
+var pizzaCost = 0
+
+
+
+// size
+$( "#small" ).click(function() {
+  var cost = $(this).data( "cost" );
+  console.log(cost);
+  var time = $(this).data( "time");
+  var size = $(this).data( 'size');
+  order.cost += parseInt(cost);
+  order.estimated_time += parseInt(time);
+  order.pizza_order['size'] = $(this).attr("id");
+  console.log(order)
+})
+
+
+// crust
+$( "#thin" ).click(function() {
+  var cost = $(this).data( "cost" );
+  var time = $(this).data( "time");
+  var crust = $(this).data( 'crust');
+  order.cost += parseInt(cost);
+  order.estimated_time += parseInt(time);
+  order.pizza_order['crust'] = $(this).attr("id");
+  console.log(order)
+})
+// toppings
+
+
+$('#extracheese').click(function() {
+
+   if ($(this).find('.form-check-input').is(':checked')) {
+    var cost = $(this).data( "cost" );
+    var time = $(this).data( "time");
+    if (time > toppingTime) {
+      order.estimated_time += (time - toppingTime);
+      toppingTime = time
+    }
+    order.cost += parseInt(cost);
+    order.pizza_order.toppings.push($(this).attr("id"));
+    console.log(order)
+   } else {
+      var cost = $(this).data( "cost" );
+      var time = $(this).data( "time");
+      if (time = toppingTime) {
+        order.estimated_time -= (time - toppingTime);
+        toppingTime = 1
+      }
+      order.cost -= parseInt(cost);
+      var index = order.pizza_order.toppings.indexOf($(this).attr("id"));
+      if (index > -1) {
+        order.pizza_order.toppings.splice(index, 1);
+      }
+      console.log(order)
+    }
+ });
+
+ $('#onions').click(function() {
+
+   if ($(this).find('.form-check-input').is(':checked')) {
+    var cost = $(this).data( "cost" );
+    var time = $(this).data( "time");
+    if (time > toppingTime) {
+      order.estimated_time += (time - toppingTime);
+      toppingTime = time
+    }
+    order.cost += parseInt(cost);
+    order.pizza_order.toppings.push($(this).attr("id"));
+    console.log(order)
+   } else {
+      var cost = $(this).data( "cost" );
+      var time = $(this).data( "time");
+      if (time = toppingTime) {
+        order.estimated_time -= (time - toppingTime);
+        toppingTime = 1
+      }
+      order.cost -= parseInt(cost);
+      var index = order.pizza_order.toppings.indexOf($(this).attr("id"));
+      if (index > -1) {
+        order.pizza_order.toppings.splice(index, 1);
+      }
+      console.log(order)
+   }
+ });
+
+
+
+
+
+
 });
