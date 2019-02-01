@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
         knex('extra').insert(
           {
             id: 2,
-            name: 'Overpiced Bubbly Water',
+            name: 'Overpriced Bubbly Water',
             time_prep: 2,
             cost: 6.00
           }),

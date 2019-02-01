@@ -98,10 +98,51 @@ app.get("/", (req, res) => {
 });
 
 // Restaurant page
+
 app.get("/restaurant", (req, res) => {
-  let templateVars = {};
-  res.render('restaurant');
+
+  Promise.all([
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("order")
+        .then((results) => {
+          resolve(results);
+      });
+    }),
+
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("customer")
+        .leftOuterJoin('order', 'customer.id', 'order.customer_id')
+        .then((results) => {
+        resolve(results);
+      });
+    }),
+
+  ]).then(function(values) {
+
+    const orders = values[0];
+    const customers = values[1];
+
+    let templateVars = {
+      orders: orders,
+      customers: customers,
+    };
+
+    res.render("restaurant", templateVars);
+  });
 });
+
+
+
+
+// app.get("/restaurant", (req, res) => {
+
+//   let templateVars = {};
+//   res.render('restaurant');
+// });
 
 // Customer page
 app.get("/:id", (req, res) => {

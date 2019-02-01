@@ -48,29 +48,119 @@ $( document ).ready(function() {
   });
 
 
-  $("#confirm").on('click', function (e){
-    // take info from localStorage
-    // take info from forms
-    // combine info in object
-    // pass to database
-    // localStorage.clear();
-    e.preventDefault();
 
-    $.ajax({
-      type: "POST",
-      url: "/customer",
-      dataType: "json",
-      data: $("form#customer").serialize(),
-      success: function(response) {
-        //generate customer id
-        // update pizza order table to include cust_id
-        // send form data to db, customer table
-        //cahnge view to second panel (order in progress)
-        console.log('hi');
-      },
-      error: function(err) {
-        console.log("err:", err);
+
+
+
+// ------------------------------ Alter local storage -------------------
+var time = Date.now();
+let order = {
+  //customer_id: 0,
+      time_placed: time,
+      extra: {
+            extra: [],
+            },
+      pizza_order: {
+            crust: "",
+            size: "",
+            toppings: [],
+            },
+      estimated_time: 0,
+      cost: 0
+    };
+var toppingTime = 0
+var toppingCost = 0
+var pizzaTime = 0
+var pizzaCost = 0
+
+
+
+// size
+$( "#small" ).click(function() {
+  var cost = $(this).data( "cost" );
+  console.log(cost);
+  var time = $(this).data( "time");
+  var size = $(this).data( 'size');
+  order.cost += parseInt(cost);
+  order.estimated_time += parseInt(time);
+  order.pizza_order['size'] = $(this).attr("id");
+  console.log(order)
+})
+
+
+// crust
+$( "#thin" ).click(function() {
+  var cost = $(this).data( "cost" );
+  var time = $(this).data( "time");
+  var crust = $(this).data( 'crust');
+  order.cost += parseInt(cost);
+  order.estimated_time += parseInt(time);
+  order.pizza_order['crust'] = $(this).attr("id");
+  console.log(order)
+})
+// toppings
+
+
+$('#extracheese').click(function() {
+
+   if ($(this).find('.form-check-input').is(':checked')) {
+    var cost = $(this).data( "cost" );
+    var time = $(this).data( "time");
+    if (time > toppingTime) {
+      order.estimated_time += (time - toppingTime);
+      toppingTime = time
+    }
+    order.cost += parseInt(cost);
+    order.pizza_order.toppings.push($(this).attr("id"));
+    console.log(order)
+   } else {
+      var cost = $(this).data( "cost" );
+      var time = $(this).data( "time");
+      if (time = toppingTime) {
+        order.estimated_time -= (time - toppingTime);
+        toppingTime = 1
       }
-    });
-  })
+      order.cost -= parseInt(cost);
+      var index = order.pizza_order.toppings.indexOf($(this).attr("id"));
+      if (index > -1) {
+        order.pizza_order.toppings.splice(index, 1);
+      }
+      console.log(order)
+    }
+ });
+
+ $('#onions').click(function() {
+
+   if ($(this).find('.form-check-input').is(':checked')) {
+    var cost = $(this).data( "cost" );
+    var time = $(this).data( "time");
+    if (time > toppingTime) {
+      order.estimated_time += (time - toppingTime);
+      toppingTime = time
+    }
+    order.cost += parseInt(cost);
+    order.pizza_order.toppings.push($(this).attr("id"));
+    console.log(order)
+   } else {
+      var cost = $(this).data( "cost" );
+      var time = $(this).data( "time");
+      if (time = toppingTime) {
+        order.estimated_time -= (time - toppingTime);
+        toppingTime = 1
+      }
+      order.cost -= parseInt(cost);
+      var index = order.pizza_order.toppings.indexOf($(this).attr("id"));
+      if (index > -1) {
+        order.pizza_order.toppings.splice(index, 1);
+      }
+      console.log(order)
+   }
+ });
+
+
+
+
+
+
+>>>>>>> d3514a0a4792b02c10165796158aef3a3aceb6b2
 });
