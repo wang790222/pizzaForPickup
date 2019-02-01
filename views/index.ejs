@@ -53,7 +53,7 @@
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <% for (i = 0; i < sizes.length; i++) { %>
           <li class="nav-item">
-            <a class="nav-link" id="<%= crusts[i].name %>" data-toggle="pill" href="  #pills-home"  role="tab"
+            <a class="nav-link" id="<%= sizes[i].name %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
               aria-controls="pills-home" aria-selected="true"><%= sizes[i]['name'] %></a>
           </li>
           <% } %>
@@ -63,9 +63,9 @@
       <br>
 
       <h4>Crust</h4>
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3" role="tablist">
           <% for (i = 0; i < crusts.length; i++) { %>
-          <li class="nav-item">
+          <li class="nav-item" id="<%= crusts[i].name %>"data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>">
             <a class="nav-link" id="<%= crusts[i].name %>" data-toggle="pill" href="  #pills-home"  role="tab"
               aria-controls="pills-home" aria-selected="true"><%= crusts[i]['name'] %></a>
           </li>
@@ -75,7 +75,7 @@
       <br>
       <h4>Toppings</h4>
       <% for ( i = 0; i < toppings.length; i++) { %>
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline" id="<%= toppings[i]['name'] %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>">
         <input class="form-check-input" type="checkbox" value="option1">
         <label class="form-check-label"><%= toppings[i]['name'] %></label>
       </div>
@@ -99,8 +99,8 @@
 <ul>
   <% for ( i = 0; i < extras.length; i++) { %>
   <li>
-    <h4><%= toppings[i]['name'] %></h4>
-    <div class="qty mt-5">
+    <h4><%= extras[i]['name'] %></h4>
+    <div class="qty mt-5" id="<%= extras[i]['name'] %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
         <span class="minus bg-dark">-</span>
         <input type="number" class="count" name="qty" value="1">
         <span class="plus bg-dark">+</span>
