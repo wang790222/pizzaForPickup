@@ -2,29 +2,14 @@
 <html lang="en">
 <% include ./partials/_header %>
 </div>
-<img width="100%" src="pizzahero.jpg" alt="Delicious Pizza waiting to be Picked Up!" class="hero">
+<img width="100%" max-height=50px src="pizzahero.jpg" alt="Delicious Pizza waiting to be Picked Up!" class="hero">
 
     <h1>New Order </h1>
-
-<!-- NAV TABS FOR PIZZA AND EXTRAS -->
-<!-- TODO: SHOW/HIDE FORMS -->
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Pizza</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Extras</a>
-      </li>
-    </ul>
-
-    <br>
-
-<!-- add container for current items in cart -->
 
 
 <!-- add pizza form -->
     <p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="false" aria-controls="collapsePizzaForm">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="true" aria-controls="collapsePizzaForm">
       Add New Pizza
     </button>
     </p>
@@ -76,12 +61,10 @@
 
 <!-- extras form -->
 
-
-
 <ul>
   <% for ( i = 0; i < extras.length; i++) { %>
   <li>
-    <h6><%= extras[i]['name'] %></h6>
+    <h4><%= extras[i]['name'] %></h4>
     <div class="qty mt-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
         <span class="minus bg-dark">-</span>
         <input type="number" class="count" name="qty" value="1">
@@ -94,7 +77,7 @@
 
 
 </ul>
-
+</div>
 <!-- css to implement (just copy pasta) -->
 
 <!-- .qty .count {
