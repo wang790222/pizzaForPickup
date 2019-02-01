@@ -93,6 +93,7 @@ $( "#small" ).click(function() {
   var time = $(this).data( "time");
   var size = $(this).data( 'size');
   order.cost += parseInt(cost);
+  pizzaCost += parseInt(cost);
   order.estimated_time += parseInt(time);
   order.pizza_order['size'] = $(this).attr("id");
   console.log(order)
@@ -105,6 +106,7 @@ $( "#thin" ).click(function() {
   var time = $(this).data( "time");
   var crust = $(this).data( 'crust');
   order.cost += parseInt(cost);
+  pizzaCost += parseInt(cost);
   order.estimated_time += parseInt(time);
   order.pizza_order['crust'] = $(this).attr("id");
   console.log(order)
@@ -113,8 +115,7 @@ $( "#thin" ).click(function() {
 
 
 $('#extracheese').click(function() {
-
-   if ($(this).find('.form-check-input').is(':checked')) {
+   if ($(this).is(':checked')) {
     var cost = $(this).data( "cost" );
     var time = $(this).data( "time");
     if (time > toppingTime) {
@@ -122,10 +123,12 @@ $('#extracheese').click(function() {
       toppingTime = time
     }
     order.cost += parseInt(cost);
+    pizzaCost += parseInt(cost);
     order.pizza_order.toppings.push($(this).attr("id"));
-    console.log(order)
+    console.log(pizzaCost)
    } else {
       var cost = $(this).data( "cost" );
+      pizzaCost -= $(this).data( "cost" );
       var time = $(this).data( "time");
       if (time = toppingTime) {
         order.estimated_time -= (time - toppingTime);
@@ -136,13 +139,13 @@ $('#extracheese').click(function() {
       if (index > -1) {
         order.pizza_order.toppings.splice(index, 1);
       }
-      console.log(order)
+      console.log(pizzaCost)
     }
  });
 
  $('#onions').click(function() {
 
-   if ($(this).find('.form-check-input').is(':checked')) {
+   if ($(this).is(':checked')) {
     var cost = $(this).data( "cost" );
     var time = $(this).data( "time");
     if (time > toppingTime) {
@@ -150,10 +153,12 @@ $('#extracheese').click(function() {
       toppingTime = time
     }
     order.cost += parseInt(cost);
+    pizzaCost += parseInt(cost);
     order.pizza_order.toppings.push($(this).attr("id"));
     console.log(order)
    } else {
       var cost = $(this).data( "cost" );
+      pizzaCost -= $(this).data( "cost" );
       var time = $(this).data( "time");
       if (time = toppingTime) {
         order.estimated_time -= (time - toppingTime);
@@ -168,9 +173,27 @@ $('#extracheese').click(function() {
    }
  });
 
+// ---------------------extras-------------------------------------
 
+    $("#sugarcravinsoda > .plus.bg-dark").click(function () {
+      $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) + 1 );
+      order.extra.extra.push('sugarcravinsoda')
+      order.cost += parseFloat($('#sugarcravinsoda').data('cost'))
+      console.log(order.cost)
+     });
 
-
+    $("#sugarcravinsoda > .minus.bg-dark").click(function () {
+      $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) - 1 );
+      if ($('.count').val() <= 0) {
+        $('.count').val(0);
+      }
+      var index = order.extra.extra.indexOf('sugarcravinsoda');
+      if (index > -1) {
+        order.extra.extra.splice(index, 1);
+        order.cost -= parseFloat($('#sugarcravinsoda').data('cost'))
+      }
+      console.log(order.cost);
+    })
 
 
 });

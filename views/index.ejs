@@ -42,9 +42,9 @@
       <br>
       <h4>Toppings</h4>
       <% for ( i = 0; i < toppings.length; i++) { %>
-      <div class="form-check form-check-inline" id="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>">
-        <input class="form-check-input" type="checkbox" value="option1">
-        <label class="form-check-label"><%= toppings[i]['name'] %></label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>"value="option1">
+        <label for="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>"><%= toppings[i]['name'] %></label>
       </div>
       <% } %>
 
