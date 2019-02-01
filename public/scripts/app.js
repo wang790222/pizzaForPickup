@@ -48,7 +48,28 @@ $( document ).ready(function() {
   });
 
 
+$("#confirm").on('click', function (e){
+    // take info from localStorage
+    // take info from forms
+    // combine info in object
+    // pass to database
+    e.preventDefault();
 
+    $.ajax({
+      type: "POST",
+      url: "/customer",
+      dataType: "json",
+      data: $("form#customer").serialize(),
+      success: function(response) {
+        // update pizza order table to include cust_id
+        // send form data to db, customer table
+        //change view to second panel (order in progress)
+      },
+      error: function(err) {
+        console.log("err:", err);
+      }
+    });
+  })
 
 
 
