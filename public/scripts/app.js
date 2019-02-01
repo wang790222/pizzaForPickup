@@ -114,7 +114,6 @@ $('#extracheese').click(function() {
     order.cost += parseInt(cost);
     pizzaCost += parseInt(cost);
     order.pizza_order.toppings.push($(this).attr("id"));
-    console.log(pizzaCost)
    } else {
       var cost = $(this).data( "cost" );
       pizzaCost -= $(this).data( "cost" );
@@ -128,7 +127,6 @@ $('#extracheese').click(function() {
       if (index > -1) {
         order.pizza_order.toppings.splice(index, 1);
       }
-      console.log(pizzaCost)
     }
  });
 
@@ -144,7 +142,6 @@ $('#extracheese').click(function() {
     order.cost += parseInt(cost);
     pizzaCost += parseInt(cost);
     order.pizza_order.toppings.push($(this).attr("id"));
-    console.log(order)
    } else {
       var cost = $(this).data( "cost" );
       pizzaCost -= $(this).data( "cost" );
@@ -158,7 +155,6 @@ $('#extracheese').click(function() {
       if (index > -1) {
         order.pizza_order.toppings.splice(index, 1);
       }
-      console.log(order)
    }
  });
 
@@ -168,7 +164,6 @@ $('#extracheese').click(function() {
       $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) + 1 );
       order.extra.extra.push('sugarcravinsoda')
       order.cost += parseFloat($('#sugarcravinsoda').data('cost'))
-      console.log(order.cost)
      });
 
     $("#sugarcravinsoda > .minus.bg-dark").click(function () {
@@ -181,9 +176,8 @@ $('#extracheese').click(function() {
         order.extra.extra.splice(index, 1);
         order.cost -= parseFloat($('#sugarcravinsoda').data('cost'))
       }
-      console.log(order.cost);
     })
 
 
->>>>>>> d3514a0a4792b02c10165796158aef3a3aceb6b2
+
 });
