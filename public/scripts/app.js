@@ -52,17 +52,6 @@ $( document ).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // ------------------------------ Alter local storage -------------------
 var time = Date.now();
 let order = {
@@ -196,4 +185,5 @@ $('#extracheese').click(function() {
     })
 
 
+>>>>>>> d3514a0a4792b02c10165796158aef3a3aceb6b2
 });

@@ -15,7 +15,9 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
-const crustRoutes = require("./routes/crust");
+const crustRoutes   = require("./routes/crust");
+const sizeRoutes    = require("./routes/size");
+const toppingRoutes = require("./routes/topping");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -165,6 +167,47 @@ app.post("/", (req, res) => {
     });
 });
 
+app.post("/customer", (req, res) => {
+  console.log(req.body);
+
+  knex('customer')
+    .insert({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
+    .returning('id')
+    .then((customerId) => {
+      console.log(`inserted customer: ${customerId} into DB. `);
+      knex("order")
+        .where({id: req.params.order_id})
+        .update({customer_id: customerId})
+
+      res.json({})
+    })
+
+
+  // for ()
+
+  // knex('${}').insert()
+  // TWILLIO
+  // localStorage.clear();
+});
+
+
+
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
