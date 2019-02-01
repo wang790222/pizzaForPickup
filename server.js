@@ -128,7 +128,7 @@ app.post("/", (req, res) => {
 
 app.post("/:id", (req, res) => {
   console.log(data);
-  for ()
+  // for ()
 
   // knex.insert()
   // localStorage.clear();
