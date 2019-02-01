@@ -17,7 +17,7 @@
       <div class="card card-body">
 
       <h4>Size</h4>
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <ul class="nav nav-pills mb-3" id="size" role="tablist">
           <% for (i = 0; i < sizes.length; i++) { %>
           <li class="nav-item">
             <a class="nav-link" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
@@ -30,7 +30,7 @@
       <br>
 
       <h4>Crust</h4>
-        <ul class="nav nav-pills mb-3" role="tablist">
+        <ul class="nav nav-pills mb-3" id="crust" role="tablist">
           <% for (i = 0; i < crusts.length; i++) { %>
           <li class="nav-item" id="<%= crusts[i]['name'].toLowerCase() %>"data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>">
             <a class="nav-link" data-toggle="pill" href="  #pills-home"  role="tab"
