@@ -8,7 +8,7 @@ exports.seed = function(knex, Promise) {
             time_feedback: "2019-01-30 0:01:23",
             rating_star: 5,
             rating_text: "Good Job."
-          })
+          }),
         knex('feedback').insert(
           {
             order_id: 2,

@@ -28,8 +28,7 @@ exports.seed = function(knex, Promise) {
             estimated_time: 22,
             cost: 25.50,
             time_pickup: "2019-01-30 18:02:33"
-          })
-          knex('order').insert(
+          }), knex('order').insert(
             {
               customer_id: 2,
               time_placed: "2019-01-30 18:20:13",

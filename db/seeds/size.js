@@ -8,14 +8,14 @@ exports.seed = function(knex, Promise) {
             name: 'Small',
             time_prep: 5,
             cost: 5.00
-          })
+          }),
          knex('size').insert(
           {
             id: 2,
             name: 'Medium',
             time_prep: 7,
             cost: 7.00
-          })
+          }),
          knex('size').insert(
           {
             id: 3,
