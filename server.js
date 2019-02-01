@@ -15,8 +15,8 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
-const crustRoutes = require("./routes/crust");
-const sizeRoutes = require("./routes/size");
+const crustRoutes   = require("./routes/crust");
+const sizeRoutes    = require("./routes/size");
 const toppingRoutes = require("./routes/topping");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT

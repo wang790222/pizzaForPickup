@@ -61,9 +61,11 @@ $( document ).ready(function() {
     url: "/:id",
     dataType: "json",
     data: {
-      data: localStorage
+      data: [localStorage, ]
     },
     success: function(response) {
+
+      //cahnge view to second panel (order in progress)
       console.log('hi');
     },
     error: function(err) {
