@@ -75,7 +75,7 @@
       <br>
       <h4>Toppings</h4>
       <% for ( i = 0; i < toppings.length; i++) { %>
-      <div class="form-check form-check-inline" id="<%= toppings[i]['name'].toLowerCase() %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>">
+      <div class="form-check form-check-inline" id="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>">
         <input class="form-check-input" type="checkbox" value="option1">
         <label class="form-check-label"><%= toppings[i]['name'] %></label>
       </div>
@@ -100,7 +100,7 @@
   <% for ( i = 0; i < extras.length; i++) { %>
   <li>
     <h4><%= extras[i]['name'] %></h4>
-    <div class="qty mt-5" id="<%= extras[i]['name'].toLowerCase() %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
+    <div class="qty mt-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
         <span class="minus bg-dark">-</span>
         <input type="number" class="count" name="qty" value="1">
         <span class="plus bg-dark">+</span>
