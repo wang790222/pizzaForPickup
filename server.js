@@ -124,6 +124,15 @@ app.post("/", (req, res) => {
     });
 });
 
+app.post("/:id", (req, res) => {
+  console.log(data);
+  // knex.insert()
+  // localStorage.clear();
+})
+
+
+
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });

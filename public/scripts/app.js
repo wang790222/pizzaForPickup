@@ -46,4 +46,26 @@ $( document ).ready(function() {
       }
     });
   });
+
+
+  $("#confirm").on('click', function (){
+
+    // localStorage.clear();
+  })
+
+  $.ajax({
+    type: "POST",
+    url: "/:id",
+    dataType: "json",
+    data: {
+      data: localStorage
+    },
+    success: function(response) {
+      // localStorage.clear();
+      console.log(hi);
+    },
+    error: function(err) {
+      console.log("err:", err);
+    }
+  });
 });
