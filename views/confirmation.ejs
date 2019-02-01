@@ -9,7 +9,6 @@
 
 <span>
 </div>
-<form>
   <div class="container">
     <div class="card">
       <div class="card-body">
@@ -20,7 +19,7 @@
 
 
   <h4>  <br> Details for pickup <br> </h4>
-        <form>
+      <form id="customer" action="/customer">
         <div class="form-group">
           <label for="phonenumber">Phone Number</label>
           <input name="phonenumber" type="text" class="form-control" maxlength="10" placeholder="Enter Phone Number">
@@ -35,7 +34,8 @@
           <input name="postcode" type="text" class="form-control" size="7" maxlength="6" placeholder="M5V1Y2">
         </div>
         <br>
-        <button type="submit" id="confirm" class="btn btn-warning">Confirm Order</button>
+        <input id="orderdId" name="orderId" type="hidden" value="<%= orderId %>">
+        <button id="confirm" class="btn btn-warning">Confirm Order</button>
       </form>
     </div>
   </div>

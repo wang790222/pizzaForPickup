@@ -48,30 +48,29 @@ $( document ).ready(function() {
   });
 
 
-  $("#confirm").on('click', function (){
+  $("#confirm").on('click', function (e){
     // take info from localStorage
     // take info from forms
     // combine info in object
     // pass to database
     // localStorage.clear();
-  })
+    e.preventDefault();
 
-  $.ajax({
-    type: "POST",
-    url: "/:id",
-    dataType: "json",
-    data: {
-      data: [localStorage, ]
-    },
-    success: function(response) {
-      //generate customer id
-      // update pizza order table to include cust_id
-      // send form data to db, customer table
-      //cahnge view to second panel (order in progress)
-      console.log('hi');
-    },
-    error: function(err) {
-      console.log("err:", err);
-    }
-  });
+    $.ajax({
+      type: "POST",
+      url: "/customer",
+      dataType: "json",
+      data: $("form#customer").serialize(),
+      success: function(response) {
+        //generate customer id
+        // update pizza order table to include cust_id
+        // send form data to db, customer table
+        //cahnge view to second panel (order in progress)
+        console.log('hi');
+      },
+      error: function(err) {
+        console.log("err:", err);
+      }
+    });
+  })
 });

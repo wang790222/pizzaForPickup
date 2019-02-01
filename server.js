@@ -126,13 +126,20 @@ app.post("/", (req, res) => {
     });
 });
 
-app.post("/:id", (req, res) => {
-  console.log(data);
+app.post("/customer", (req, res) => {
+  console.log(req.body);
 
   knex('customer')
-    .insert({id: req.params.id, name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
-    .then()
-    console.log("inserted data into DB.");
+    .insert({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
+    .returning('id')
+    .then((customerId) => {
+      console.log(`inserted customer: ${customerId} into DB. `);
+      knex("order")
+        .where({id: req.params.order_id})
+        .update({customer_id: customerId})
+
+      res.json({})
+    })
 
 
   // for ()
