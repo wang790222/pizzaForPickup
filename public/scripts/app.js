@@ -64,7 +64,9 @@ $( document ).ready(function() {
       data: [localStorage, ]
     },
     success: function(response) {
-
+      //generate customer id
+      // update pizza order table to include cust_id
+      // send form data to db, customer table
       //cahnge view to second panel (order in progress)
       console.log('hi');
     },

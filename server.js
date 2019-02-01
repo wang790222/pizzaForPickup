@@ -128,11 +128,19 @@ app.post("/", (req, res) => {
 
 app.post("/:id", (req, res) => {
   console.log(data);
+
+  knex('customer')
+    .insert({id: req.params.id, name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
+    .then()
+    console.log("inserted data into DB.");
+
+
   // for ()
 
-  // knex.insert()
+  // knex('${}').insert()
+  // TWILLIO
   // localStorage.clear();
-})
+});
 
 
 
@@ -140,3 +148,18 @@ app.post("/:id", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
