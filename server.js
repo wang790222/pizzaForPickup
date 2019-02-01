@@ -16,6 +16,8 @@ const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const crustRoutes = require("./routes/crust");
+const sizeRoutes = require("./routes/size");
+const toppingRoutes = require("./routes/topping");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -126,6 +128,8 @@ app.post("/", (req, res) => {
 
 app.post("/:id", (req, res) => {
   console.log(data);
+  for ()
+
   // knex.insert()
   // localStorage.clear();
 })

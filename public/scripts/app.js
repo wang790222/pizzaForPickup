@@ -49,7 +49,10 @@ $( document ).ready(function() {
 
 
   $("#confirm").on('click', function (){
-
+    // take info from localStorage
+    // take info from forms
+    // combine info in object
+    // pass to database
     // localStorage.clear();
   })
 
@@ -61,8 +64,7 @@ $( document ).ready(function() {
       data: localStorage
     },
     success: function(response) {
-      // localStorage.clear();
-      console.log(hi);
+      console.log('hi');
     },
     error: function(err) {
       console.log("err:", err);
