@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
             name: "Tim",
             phone: "416456789",
             post_code: "M6V"
-          }
+          })
           knex('customer').insert(
           {
             name: "Rachel",
