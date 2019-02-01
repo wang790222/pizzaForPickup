@@ -103,11 +103,26 @@ app.get("/restaurant", (req, res) => {
 
 // Customer page
 app.get("/:id", (req, res) => {
-  req.cookies
-  let templateVars = {};
-  res.render('confirmation');
+
+  res.render('confirmation', {orderId: req.params.id});
 });
 
+app.post("/", (req, res) => {
+
+  knex
+    .insert(req.body.data)
+    .returning('id')
+    .into("order")
+    .then(function (id) {
+
+      //let templateVars = {
+      //  orderId: id
+      //};
+      //console.log("id:", templateVars);
+      res.send(id);
+      //res.render('confirmation', templateVars);
+    });
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
