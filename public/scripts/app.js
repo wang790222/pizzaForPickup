@@ -12,15 +12,17 @@ $(document).ready(function() {
     estimated_time: 0,
     cost: 0
   };
-  var previousSizeCost = 5;
-  var previousSizeTime = 5;
-  var previousCrustCost = 5;
-  var previousCrustTime = 5;
+  var previousSizeCost = 0;
+  var previousSizeTime = 0;
+  var previousCrustCost = 0;
+  var previousCrustTime = 0;
 
   var pizza = {
-    crust: "thin",
-    size: "small",
-    toppings: []
+    crust: "",
+    size: "",
+    toppings: [],
+    time: 0,
+    cost: 0
   };
 
   var firstAddPizza = true;
@@ -28,8 +30,8 @@ $(document).ready(function() {
   $("#add_new_pizza").on("click", function() {
 
     if (firstAddPizza) {
-      order.estimated_time = 5;
-      order.cost = 5;
+      pizza.time = 0;
+      pizza.cost = 0;
       firstAddPizza = false;
       updateTimeMoney();
     }
@@ -57,7 +59,6 @@ $(document).ready(function() {
       }
     });
   });
-
 
   $("#confirm").on('click', function (e){
     // take info from localStorage
@@ -88,16 +89,16 @@ $(document).ready(function() {
     let time = parseInt($(this).data("time"));
     let size = $(this).attr("id");
 
-    order.cost -= previousSizeCost;
-    order.estimated_time -= previousSizeTime;
+    pizza.cost -= previousSizeCost;
+    pizza.time -= previousSizeTime;
 
     previousSizeCost = cost;
     previousSizeTime = time;
 
-    order.cost += cost;
-    order.estimated_time += time;
-
+    pizza.cost += cost;
+    pizza.time += time;
     pizza.size = size;
+
     updateTimeMoney();
   });
 
@@ -107,16 +108,16 @@ $(document).ready(function() {
     let time = parseInt($(this).data("time"));
     let crust = $(this).attr("id");
 
-    order.cost -= previousCrustCost;
-    order.estimated_time -= previousCrustTime;
+    pizza.cost -= previousCrustCost;
+    pizza.time -= previousCrustTime;
 
     previousCrustCost = cost;
     previousCrustTime = time;
 
-    order.cost += cost;
-    order.estimated_time += time;
-
+    pizza.cost += cost;
+    pizza.time += time;
     pizza.crust = crust;
+
     updateTimeMoney();
   });
 
@@ -127,10 +128,10 @@ $(document).ready(function() {
     let wasNoTopping = (pizza.toppings.length) ? false : true;
 
     if ($(this).is(':checked')) {
-      order.cost += cost;
+      pizza.cost += cost;
       pizza.toppings.push(topping);
     } else {
-      order.cost -= cost;
+      pizza.cost -= cost;
       let index = pizza.toppings.indexOf(topping);
       if (index > -1) {
         pizza.toppings.splice(index, 1);
@@ -138,11 +139,12 @@ $(document).ready(function() {
     }
 
     if (pizza.toppings.length && wasNoTopping) {
-      order.estimated_time += 1;
+      pizza.time += 1;
     }
     if (pizza.toppings.length === 0) {
-      order.estimated_time -= 1;
+      pizza.time -= 1;
     }
+
     updateTimeMoney();
   });
 
@@ -153,12 +155,12 @@ $(document).ready(function() {
       let time = parseInt($(this).parent("li").data("time"));
       let extra = $(this).parent("li").attr("id");
       let count = Number($(this).siblings(".count").val());
+      let wasNoExtra = (order.extra.extra.length) ? false : true;
 
       if ($(this).is(".minus")) {
         count--;
         if (count >= 0) {
           order.cost -= cost;
-          order.estimated_time -= time;
           let index = order.extra.extra.indexOf(extra);
           if (index > -1) {
             order.extra.extra.splice(index, 1);
@@ -169,9 +171,17 @@ $(document).ready(function() {
       } else {
         count++;
         order.cost += cost;
-        order.estimated_time += time;
         order.extra.extra.push(extra);
       }
+
+      if (order.pizza_order.pizza_order.length === 0 && wasNoExtra) {
+        order.estimated_time = 1;
+      }
+
+      if (order.extra.extra.length === 0){
+        order.estimated_time -= 1;
+      }
+
       updateTimeMoney();
       $(this).siblings(".count").val(count);
     });
@@ -179,6 +189,14 @@ $(document).ready(function() {
   });
 
   $("#add_pizza").on("click", function() {
+
+    if (pizza.crust === "" || pizza.size === ""){
+      alert("please select size and crust");
+      return;
+    }
+
+    order.cost += pizza.cost;
+    order.estimated_time += pizza.time;
     order.pizza_order.pizza_order.push(pizza);
 
     let pizzaIfo = `${pizza.size} / ${pizza.crust} / `;
@@ -191,13 +209,6 @@ $(document).ready(function() {
     let appendStr = `<li class="qty mt-5"> ${pizzaIfo} <span class="minus bg-dark">-</span> </li>`;
 
     resetOptions();
-
-    pizza = {
-      size: "small",
-      crust: "thin",
-      toppings: []
-    };
-
     updateTimeMoney();
 
     $("#pizza_info").append(function() {
@@ -206,26 +217,37 @@ $(document).ready(function() {
   });
 
   function deletePizzaHandler() {
-    order.pizza_order.pizza_order.splice($(this).index());
+
+    let costDeduct = order.pizza_order.pizza_order[($(this).index())].cost;
+    let timeDeduct = order.pizza_order.pizza_order[($(this).index())].time;
+
+    order.cost -= costDeduct;
+    order.estimated_time -= timeDeduct;
+
+    updateTimeMoney();
+    resetOptions();
+
+    order.pizza_order.pizza_order.splice($(this).index(), 1);
     $(this).remove();
   }
 
   function resetOptions() {
 
-    previousSizeCost = 5;
-    previousSizeTime = 5;
-    previousCrustCost = 5;
-    previousCrustTime = 5;
+    previousSizeCost = 0;
+    previousSizeTime = 0;
+    previousCrustCost = 0;
+    previousCrustTime = 0;
+
+    pizza = {
+      crust: "",
+      size: "",
+      toppings: [],
+      time: 0,
+      cost: 0
+    };
 
     $(".nav-item > a").each(function(index) {
       $(this).removeClass("active show");
-      if (index === 0) {
-        $(this).addClass("active show"); //Small Btn
-      }
-
-      if (index === 3) {
-        $(this).addClass("active show"); //Thin Btn
-      }
     });
 
     $('.form-check-inline input[type="checkbox"]').each(function() {
@@ -237,8 +259,8 @@ $(document).ready(function() {
 
   $("#est").remove();
   $("#total_amount").remove();
-    let estAndMoneyStr = `<p id="est">Estimated time: ${order.estimated_time} mins</p>
-                          <p id="total_amount">Total: ${order.cost} $</p>`;
+    let estAndMoneyStr = `<p id="est">Estimated time: ${order.estimated_time + pizza.time} mins</p>
+                          <p id="total_amount">Total: ${order.cost + pizza.cost} $</p>`;
     $("#time_money").append(estAndMoneyStr);
   }
 

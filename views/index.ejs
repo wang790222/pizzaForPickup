@@ -29,13 +29,8 @@
 
           <% for (i = 0; i < sizes.length; i++) { %>
           <li class="nav-item">
-            <% if(i === 0){ %>
-              <a class="nav-link active show" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
-              aria-controls="pills-home" aria-selected="true"><%= sizes[i]['name'] %></a>
-            <% } else { %>
-              <a class="nav-link" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
-              aria-controls="pills-home" aria-selected="true"><%= sizes[i]['name'] %></a>
-            <% } %>
+            <a class="nav-link" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
+            aria-controls="pills-home" aria-selected="true"><%= sizes[i]['name'] %></a>
           </li>
           <% } %>
         </ul>
@@ -48,13 +43,8 @@
 
           <% for (i = 0; i < crusts.length; i++) { %>
           <li class="nav-item">
-            <% if(i === 0){ %>
-              <a class="nav-link active show" id="<%= crusts[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>" href="  #pills-home"  role="tab"
-              aria-controls="pills-home" aria-selected="true"><%= crusts[i]['name'] %></a>
-            <% } else { %>
-              <a class="nav-link" id="<%= crusts[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>" href="  #pills-home"  role="tab"
-              aria-controls="pills-home" aria-selected="true"><%= crusts[i]['name'] %></a>
-            <% } %>
+            <a class="nav-link" id="<%= crusts[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>" href="  #pills-home"  role="tab"
+            aria-controls="pills-home" aria-selected="true"><%= crusts[i]['name'] %></a>
           </li>
           <% } %>
         </ul>
