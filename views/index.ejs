@@ -9,7 +9,8 @@
 
 <!-- add pizza form -->
     <p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="true" aria-controls="collapsePizzaForm">
+    <button class="btn btn-primary" id="add-pizza"
+    type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="true" aria-controls="collapsePizzaForm">
       Add New Pizza
     </button>
     </p>
@@ -51,7 +52,7 @@
 
       <br>
 
-      <button type="button" class="btn btn-lg btn-primary">Add Pizza</button>
+      <button type="button" id="add-pizza" class="btn btn-lg btn-primary">Add Pizza</button>
       <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
 
       <br>
@@ -60,24 +61,22 @@
     </div>
 
 <!-- extras form -->
-
-<ul>
+<ul class="extra">
   <% for ( i = 0; i < extras.length; i++) { %>
-  <li>
-    <h4><%= extras[i]['name'] %></h4>
-    <div class="qty mt-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
-        <span class="minus bg-dark">-</span>
-        <input type="number" class="count" name="qty" value="0">
-        <span class="plus bg-dark">+</span>
+    <div class="tim">
+      <li style="width:50%;" class="qty mt-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
+        <h4 style="display:inline;"><%= extras[i]['name'] %></h4>
+        <span style="float:right;" class="plus bg-dark">+</span>
+        <input style="float:right;" type="number" class="count" name="qty" value="0">
+        <span style="float:right;" class="minus bg-dark">-</span>
+      </li>
     </div>
-  </li>
   <% } %>
-
-<br>
-
-
 </ul>
 </div>
+
+
+
 <!-- css to implement (just copy pasta) -->
 
 <!-- .qty .count {

@@ -48,28 +48,7 @@ $( document ).ready(function() {
   });
 
 
-$("#confirm").on('click', function (e){
-    // take info from localStorage
-    // take info from forms
-    // combine info in object
-    // pass to database
-    e.preventDefault();
 
-    $.ajax({
-      type: "POST",
-      url: "/customer",
-      dataType: "json",
-      data: $("form#customer").serialize(),
-      success: function(response) {
-        // update pizza order table to include cust_id
-        // send form data to db, customer table
-        //change view to second panel (order in progress)
-      },
-      error: function(err) {
-        console.log("err:", err);
-      }
-    });
-  })
 
 
 
@@ -98,6 +77,7 @@ var pizzaCost = 0
 
 // size
 $( "#small" ).click(function() {
+  console.log('hello')
   var cost = $(this).data( "cost" );
   console.log(cost);
   var time = $(this).data( "time");
@@ -106,7 +86,6 @@ $( "#small" ).click(function() {
   pizzaCost += parseInt(cost);
   order.estimated_time += parseInt(time);
   order.pizza_order['size'] = $(this).attr("id");
-  console.log(order)
 })
 
 
@@ -119,7 +98,6 @@ $( "#thin" ).click(function() {
   pizzaCost += parseInt(cost);
   order.estimated_time += parseInt(time);
   order.pizza_order['crust'] = $(this).attr("id");
-  console.log(order)
 })
 // toppings
 
@@ -137,7 +115,6 @@ $('#extracheese').click(function() {
     order.pizza_order.toppings.push($(this).attr("id"));
    } else {
       var cost = $(this).data( "cost" );
-      pizzaCost -= $(this).data( "cost" );
       var time = $(this).data( "time");
       if (time = toppingTime) {
         order.estimated_time -= (time - toppingTime);
@@ -181,23 +158,67 @@ $('#extracheese').click(function() {
 
 // ---------------------extras-------------------------------------
 
-    $("#sugarcravinsoda > .plus.bg-dark").click(function () {
-      $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) + 1 );
-      order.extra.extra.push('sugarcravinsoda')
-      order.cost += parseFloat($('#sugarcravinsoda').data('cost'))
+
+    $('.qty.mt-5').find('.plus').click(function () {
+      console.log($(this).parents('li').attr('id'))
+      $(this).siblings('.count').val(parseInt($(this).siblings('.count').val()) + 1 )
+      // order.extra.extra.push('sugarcravinsoda')
+      // order.cost += parseFloat($(this).data('cost'))
      });
 
-    $("#sugarcravinsoda > .minus.bg-dark").click(function () {
-      $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) - 1 );
-      if ($('.count').val() <= 0) {
-        $('.count').val(0);
+    $('.qty.mt-5').find('.minus').click(function (){
+      $(this).siblings('.count').val(parseInt($(this).siblings('.count').val()) - 1 );
+      if ($(this).siblings('.count').val() <= 0) {
+        $(this).siblings('.count').val(0);
       }
       var index = order.extra.extra.indexOf('sugarcravinsoda');
       if (index > -1) {
         order.extra.extra.splice(index, 1);
-        order.cost -= parseFloat($('#sugarcravinsoda').data('cost'))
+        order.cost -= parseFloat($(this).data('cost'))
       }
     })
+
+
+    // $("#sugarcravinsoda > .plus.bg-dark").click(function () {
+    //   $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) + 1 );
+    //   order.extra.extra.push('sugarcravinsoda')
+    //   order.cost += parseFloat($('#sugarcravinsoda').data('cost'))
+    //  });
+
+    // $("#sugarcravinsoda > .minus.bg-dark").click(function () {
+    //   $('#sugarcravinsoda > .count').val(parseInt($('.count').val()) - 1 );
+    //   if ($('.count').val() <= 0) {
+    //     $('.count').val(0);
+    //   }
+    //   var index = order.extra.extra.indexOf('sugarcravinsoda');
+    //   if (index > -1) {
+    //     order.extra.extra.splice(index, 1);
+    //     order.cost -= parseFloat($('#sugarcravinsoda').data('cost'))
+    //   }
+    // })
+
+// -----vampirefreegarlicbread
+    // $("#vampirefreegarlicbread > .plus.bg-dark").click(function () {
+    //   $('#vampirefreegarlicbread > .count').val(parseInt($('#vampirefreegarlicbread > .count').val()) + 1 );
+    //   order.extra.extra.push('vampirefreegarlicbread')
+    //   order.cost += parseFloat($('#vampirefreegarlicbread').data('cost'))
+    //  });
+
+    // $("#vampirefreegarlicbread > .minus.bg-dark").click(function () {
+    //   $('#vampirefreegarlicbread > .count').val(parseInt($('.count').val()) - 1 );
+    //   if ($('.count').val() <= 0) {
+    //     $('.count').val(0);
+    //   }
+    //   var index = order.extra.extra.indexOf('vampirefreegarlicbread');
+    //   if (index > -1) {
+    //     order.extra.extra.splice(index, 1);
+    //     order.cost -= parseFloat($('#vampirefreegarlicbread').data('cost'))
+    //   }
+    // })
+
+
+
+
 
 
 

@@ -92,7 +92,6 @@ app.get("/", (req, res) => {
       toppings: toppings,
       extras: extras
     };
-
     res.render("index", templateVars);
   });
 });
@@ -132,7 +131,7 @@ app.get("/restaurant", (req, res) => {
       orders: confirmedOrders,
       feedbacks: feedbacks,
     };
-
+    console.log('hello')
     console.log(templateVars)
 
     res.render("restaurant", templateVars);
@@ -155,7 +154,7 @@ app.get("/:id", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-
+  console.log('hello')
   knex
     .insert(req.body.data)
     .returning('id')
