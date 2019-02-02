@@ -159,7 +159,9 @@ app.get("/:id", (req, res) => {
             orderId: req.params.id,
             orderAmount: (results[0].cost) ? results[0].cost : 0,
             estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
-            items: pizzaAmount + extraAmount
+            items: pizzaAmount + extraAmount,
+            pickedUp: results[0].time_pickup,
+            customerId: results[0].customer_id
           };
 
           res.render('confirmation', templateVars);
