@@ -19,6 +19,12 @@ const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
 const toppingRoutes = require("./routes/topping");
 
+var accountSid = 'ACc8024c79d240fb7f5c62a19d5cd63673';
+var authToken = '2461749b4d53f083414cf3be1783552d';
+
+var twilio = require('twilio');
+var client = new twilio(accountSid, authToken);
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -135,19 +141,27 @@ app.get("/restaurant", (req, res) => {
   });
 });
 
-
-
-
-// app.get("/restaurant", (req, res) => {
-
-//   let templateVars = {};
-//   res.render('restaurant');
-// });
-
 // Customer page
 app.get("/:id", (req, res) => {
+  new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("order")
+        .where("id", "=", req.params.id)
+        .then((results) => {
 
-  res.render('confirmation', {orderId: req.params.id});
+          let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizza_order.length : 0;
+          let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
+          let templateVars = {
+            orderId: req.params.id,
+            orderAmount: (results[0].cost) ? results[0].cost : 0,
+            estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
+            items: pizzaAmount + extraAmount
+          };
+
+          res.render('confirmation', templateVars);
+      });
+    });
 });
 
 app.post("/", (req, res) => {
@@ -157,41 +171,45 @@ app.post("/", (req, res) => {
     .returning('id')
     .into("order")
     .then(function (id) {
-
-      //let templateVars = {
-      //  orderId: id
-      //};
-      //console.log("id:", templateVars);
       res.send(id);
-      //res.render('confirmation', templateVars);
     });
 });
 
 app.post("/customer", (req, res) => {
-  console.log(req.body);
 
-  knex('customer')
-    .insert({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
-    .returning('id')
-    .then((customerId) => {
-      console.log(`inserted customer: ${customerId} into DB. `);
-      knex("order")
-        .where({id: req.params.order_id})
-        .update({customer_id: customerId})
+  console.log("Post Customer - orderid:", req.body.order_id);
 
-      res.json({})
+  Promise.all([
+    new Promise(function(resolve, reject) {
+      knex
+      .insert({
+        name: req.body.customername,
+        phone: req.body.phonenumber,
+        post_code: req.body.postcode
+      })
+      .returning('id')
+      .into("customer")
+      .then(function (id) {
+        new Promise(function(resolve, reject) {
+          knex('order')
+          .where({ id: req.body.order_id})
+          .update({ customer_id: id});
+        });
+
+        client.messages.create({
+            body: 'Order Pizza!',
+            to: '+15149437993',   //Tim's number
+            from: '+18737714590'
+          })
+          .then((message) => console.log(message.sid))
+          .done();
+        });
     })
-
-
-  // for ()
-
-  // knex('${}').insert()
-  // TWILLIO
-  // localStorage.clear();
+  ])
+  .then(function(values) {
+    console.log("Insert Customer table / Update Order table");
+  });
 });
-
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

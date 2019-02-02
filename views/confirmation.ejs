@@ -11,13 +11,14 @@
     <div class="card">
       <div class="card-body">
         <h4>Summary </h4>
-        <li>Number of Items: 4 </li>
-  <li>Order Amount: $33.50 </li>
-  <li>Estimated Time: 30 mins</li>
+        <li>Number of Items: <%= items %> </li>
+  <li>Order Amount: $<%= orderAmount %>
+ </li>
+  <li>Estimated Time: <%= estimatedTime %> mins</li>
 
 
   <h4>  <br> Details for pickup <br> </h4>
-      <form id="customer" action="/customer">
+      <form id="customer" action="/customer" method="POST">
         <div class="form-group">
           <label for="phonenumber">Phone Number</label>
           <input name="phonenumber" type="text" class="form-control" maxlength="10" placeholder="Enter Phone Number">
@@ -32,7 +33,7 @@
           <input name="postcode" type="text" class="form-control" size="7" maxlength="6" placeholder="M5V1Y2">
         </div>
         <br>
-        <input id="orderdId" name="orderId" type="hidden" value="<%= orderId %>">
+        <input name="order_id" type=text hidden value="<%= orderId %>">
         <button id="confirm" class="btn btn-warning">Confirm Order</button>
       </form>
     </div>
