@@ -53,12 +53,16 @@ $("#confirmcookminutes").on('click', function (e){
     // when button confirm button is clicked post the time 
     e.preventDefault();
 
+    let currenttime = Date.now()
+
     $.ajax({
       type: "POST",
-      url: "/restaurant",
+      url: "/restaurant/confirm_time",
       dataType: "json",
-      data: moment(Date.now()).add(cookminutes, 'm').toDate(),
+      data: currenttime,
+      //moment(Date.now()).add(cookminutes, 'm').toDate(),
       success: function(response) {
+        console.log(response);
         // update pizza order table to include cust_id
         // send form data to db, customer table
         //change view to second panel (order in progress)
@@ -71,13 +75,21 @@ $("#confirmcookminutes").on('click', function (e){
 
   $("#pickedupchecked").on('click', function (e){
 
+
+    console.log("Got the pick up confirm")
+    //console.log(req.body.time_pickup);
+
     e.preventDefault();
+
+    let currenttime = Date.now()
 
     $.ajax({
       type: "POST",
-      url: "/restaurant",
+      url: "/restaurant/pickup_time",
       dataType: "json",
-      data: Date.now(),
+      data: {
+        time_pickup: currenttime
+      },
       success: function(response) {
         // update pizza order table to include cust_id
         // send form data to db, customer table

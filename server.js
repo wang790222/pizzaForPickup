@@ -139,35 +139,33 @@ app.get("/restaurant", (req, res) => {
   });
 });
 
-app.post("/restaurant"), (req, res) => {
-
-  console.log(req.body);
+app.post("/restaurant/confirm_time"), (req, res) => {
+let time = req.body.value;
+  console.log(req.body.value);
 
 // Update with confirmed pick up time
 
-
   knex('order')
-    .update({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
-    .returning('id')
+    //.update(confirm_time = time)
     .then((orderId) => {
-      console.log(`inserted confirmed time: ${timeConfirmed} into DB. `);
+      //console.log(`inserted confirmed time: ${timeConfirmed} into DB. `);
       knex("order")
         .where({id: req.params.order_id})
-        .update({time_confirmed: timeConfirmed})
+        .update({time_confirmed: time})
 
       res.json({})
     })
 
 };
-
-app.post("/restaurant"), (req, res) => {
+        
+app.post("/restaurant/pickup_time"), (req, res) => {
+  console.log("Got the pick up confirm")
+  console.log(req.body.time_pickup);
 
   console.log(req.body);
 
-    // Update with time picked up 
-
   knex('order')
-  .insert({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
+  .insert({time_pickup: req.body.pickedupchecked})
   .returning('id')
   .then((orderId) => {
     console.log(`inserted pick up time: ${timePickUp} into DB. `);

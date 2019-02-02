@@ -39,9 +39,9 @@
       <td><%= orders[i]['name'] %></td>
       <td><%= orders[i]['phone'] %></td>
       <% if(orders[i]['time_confirmed'] === null){ %>
-      <td> <form class="form-inline"  >
-    <input id="cookminutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" ></input>
-    <a> &nbsp mins &nbsp</a>
+      <td> <form class="form-inline"  action="/restaurant/confirm_time" method="POST">
+    <input id="cookminutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %> " value="<%= orders[i]['estimated_time']%>"></input>
+    <p> &nbsp mins &nbsp</p>
   </div>
   <button id="confirmcookminutes" type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
 </form>
@@ -57,7 +57,9 @@
 </td>
 <% if(orders[i]['time_confirmed'] !== null){ %>
         <td>
-        <button id="pickedupchecked" type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button></td>
+          
+        <button id="pickedupchecked" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button></td>
+      </form>
     </tr>
     <% } else { %>
       <td>
