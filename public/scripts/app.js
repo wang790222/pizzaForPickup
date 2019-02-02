@@ -85,8 +85,8 @@ $(document).ready(function() {
 
   // size
   $("#small, #medium, #large").click(function() {
-    let cost = parseInt($(this).data("cost"));
-    let time = parseInt($(this).data("time"));
+    let cost = parseFloat($(this).data("cost"));
+    let time = parseFloat($(this).data("time"));
     let size = $(this).attr("id");
 
     pizza.cost -= previousSizeCost;
@@ -101,11 +101,10 @@ $(document).ready(function() {
 
     updateTimeMoney();
   });
-
   // crust
   $("#thin, #regular, #stuffed" ).click(function() {
-    let cost = parseInt($(this).data("cost"));
-    let time = parseInt($(this).data("time"));
+    let cost = parseFloat($(this).data("cost"));
+    let time = parseFloat($(this).data("time"));
     let crust = $(this).attr("id");
 
     pizza.cost -= previousCrustCost;
@@ -123,7 +122,7 @@ $(document).ready(function() {
 
   // topping
   $('.form-check-inline input[type="checkbox"]').on('click', function() {
-    let cost = parseInt($(this).data("cost"));
+    let cost = parseFloat($(this).data("cost"));
     let topping = $(this).attr("id");
     let wasNoTopping = (pizza.toppings.length) ? false : true;
 
@@ -151,8 +150,8 @@ $(document).ready(function() {
   // extra
   $( "ul.extra > li > span" ).each(function() {
     $(this).on("click", function() {
-      let cost = parseInt($(this).parent("li").data("cost"));
-      let time = parseInt($(this).parent("li").data("time"));
+      let cost = parseFloat($(this).parent("li").data("cost"));
+      let time = parseFloat($(this).parent("li").data("time"));
       let extra = $(this).parent("li").attr("id");
       let count = Number($(this).siblings(".count").val());
       let wasNoExtra = (order.extra.extra.length) ? false : true;
