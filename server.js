@@ -139,7 +139,7 @@ app.get("/restaurant", (req, res) => {
   });
 });
 
-app.post("/restaurant/confirm_time"), (req, res) => {
+app.post("/restaurant/confirm_time", (req, res) => {
 let time = req.body.value;
   console.log(req.body.value);
 
@@ -156,9 +156,9 @@ let time = req.body.value;
       res.json({})
     })
 
-};
+});
         
-app.post("/restaurant/pickup_time"), (req, res) => {
+app.post("/restaurant/pickup_time", (req, res) => {
   console.log("Got the pick up confirm")
   console.log(req.body.time_pickup);
 
@@ -176,7 +176,7 @@ app.post("/restaurant/pickup_time"), (req, res) => {
     res.json({})
   })
 
-};
+});
 
 
 
