@@ -14,6 +14,14 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+const twilio = require('twilio');
+// Account SID & Auth Token from www.twilio.com/console
+const accountSid = 'AC8a4c0b326f64585e722a136c2440cfee';
+const authToken = '89caf6bf7793d0ff4d5aab087d49df65';
+
+const client = new twilio(accountSid, authToken);
+
+// DO WE STILL NEED THESE??????*****
 // Seperated Routes for each Resource
 const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
@@ -206,17 +214,26 @@ app.post("/", (req, res) => {
 });
 
 app.post("/customer", (req, res) => {
-  console.log(req.body);
 
   knex('customer')
+      // send form data to db, customer table
     .insert({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
     .returning('id')
     .then((customerId) => {
       console.log(`inserted customer: ${customerId} into DB. `);
+      // update pizza order table to include cust_id
       knex("order")
         .where({id: req.params.order_id})
         .update({customer_id: customerId})
+        .then((customerId) => {
+          // client.messages.create({
+          //     body: 'Hello from Node',
+          //     to: '+12345678901',  // Text this number
+          //     from: '+14169173801' // From Twilio number
+          // })
+          .then((message) => console.log(message.sid));
 
+        })
       res.json({})
     })
   // TWILLIO TO RESTAURANT
