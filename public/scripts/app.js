@@ -98,6 +98,8 @@ $(document).ready(function() {
     order.estimated_time += time;
 
     pizza.size = size;
+
+    updateTimeMoney();
   });
 
   // crust
@@ -109,6 +111,8 @@ $(document).ready(function() {
     order.estimated_time += time;
 
     pizza.crust = crust;
+
+    updateTimeMoney();
   });
 
   // topping
@@ -137,6 +141,7 @@ $(document).ready(function() {
         pizza.toppings.splice(index, 1);
       }
     }
+    updateTimeMoney();
   });
 
   $( "ul.extra > li > span" ).each(function() {
@@ -164,6 +169,7 @@ $(document).ready(function() {
       }
       $(this).siblings(".count").val(count);
     });
+    updateTimeMoney();
   });
 
   $("#add_pizza").on("click", function() {
@@ -187,6 +193,8 @@ $(document).ready(function() {
       toppings: []
     };
 
+    updateTimeMoney();
+
     $("#pizza_info").append(function() {
       return $(appendStr).click(deletePizzaHandler);
     });
@@ -196,6 +204,16 @@ $(document).ready(function() {
     order.pizza_order.pizza_order.splice($(this).index());
     $(this).remove();
   }
+
+  function updateTimeMoney() {
+
+  $("#est").remove();
+  $("#total_amount").remove();
+    let estAndMoneyStr = `<p id="est">Estimated time: ${order.estimated_time}</p>
+                          <p id="total_amount">Total: ${order.cost}</p>`;
+    $("#time_money").append(estAndMoneyStr);
+  }
+
 });
 
 function resetOptions() {
