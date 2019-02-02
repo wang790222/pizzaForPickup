@@ -219,7 +219,7 @@ app.post("/customer", (req, res) => {
 
       res.json({})
     })
-  // TWILLIO
+  // TWILLIO TO RESTAURANT
 
 });
 
