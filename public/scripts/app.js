@@ -51,16 +51,14 @@ $( document ).ready(function() {
 
 $(".confirmCookMinutes").on('click', function (e){
     // when button confirm button is clicked post the time 
-    function addMinutes(date, minutes) {
-      return new Date(date.getTime() + minutes*60000);
-    };
-    console.log("Got confirm the order time")
+    // function addMinutes(date, minutes) {
+    //   return new Date(date.getTime() + minutes*60000);
+    // };
     e.preventDefault();
     let estimateTime = $(this).siblings('#cookminutes').val();
-    console.log("Estimate Time", e, estimateTime, $(this).siblings())
-    ///let nowTime = new Date();
-    let estTimePickup = addMinutes((new Date()), estimateTime)
-    console.log("timepickup", estTimePickup)
+   /// let confirmedTime = addMinutes((new Date()), estimateTime)
+   let confirmedTime = moment().add(Number(estimateTime),'m').format();
+    console.log("timepickup", estimateTime, confirmedTime)
 
     $.ajax({
       type: "POST",
@@ -92,14 +90,17 @@ $(".confirmCookMinutes").on('click', function (e){
 
     // Date.prototype.toUnixTime = function() { return this.getTime()/1000|0 };
     // Date.time = function() { return new Date().toUnixTime(); }
-    let currenttime = Date.now()
+    ///let currentTime = new Date()
+    const currentTime = moment().format();
+
+    console.log("Got the pick up confirm", currentTime)
 
     $.ajax({
       type: "POST",
       url: "/restaurant/pickup_time",
       dataType: "json",
       data: {
-        time_pickup: currenttime
+        time_pickup: currentTime
       },
       success: function(response) {
         // update pizza order table to include cust_id

@@ -8,7 +8,6 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const moment       = require('moment');
-moment().format();
 const app         = express();
 
 
@@ -167,7 +166,7 @@ let time = req.body.value;
         
 app.post("/restaurant/pickup_time", (req, res) => {
   console.log("Got the pick up confirm")
-  console.log(req.body);
+  console.log(req.body.time_pickup);
 
   let timePickup = req.body.time_pickup
 
