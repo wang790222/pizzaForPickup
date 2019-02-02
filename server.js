@@ -19,8 +19,8 @@ const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
 const toppingRoutes = require("./routes/topping");
 
-var accountSid = 'ACc8024c79d240fb7f5c62a19d5cd63673';
-var authToken = '2461749b4d53f083414cf3be1783552d';
+var accountSid = process.env.TWILIO_ACCOUNT_SID;
+var authToken = process.env.TWILIO_AUTHTOKEN;
 
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
