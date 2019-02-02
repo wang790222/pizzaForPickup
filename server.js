@@ -112,16 +112,18 @@ app.get("/restaurant", (req, res) => {
       knex
         .select()
         .from("order")
+        .whereNotNull("order.customer_id")
+        .whereNull("order.time_pickup")
+        .leftOuterJoin('customer', 'customer.id', 'order.customer_id')
         .then((results) => {
-          resolve(results);
+        resolve(results);
       });
     }),
 
     new Promise(function(resolve, reject) {
       knex
         .select()
-        .from("customer")
-        .leftOuterJoin('order', 'customer.id', 'order.customer_id')
+        .from("feedback")
         .then((results) => {
         resolve(results);
       });
@@ -129,13 +131,15 @@ app.get("/restaurant", (req, res) => {
 
   ]).then(function(values) {
 
-    const orders = values[0];
-    const customers = values[1];
+    const confirmedOrders = values[0];
+    const feedbacks = values[2];
 
     let templateVars = {
-      orders: orders,
-      customers: customers,
+      orders: confirmedOrders,
+      feedbacks: feedbacks,
     };
+
+    console.log(templateVars)
 
     res.render("restaurant", templateVars);
   });

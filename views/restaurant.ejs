@@ -36,40 +36,39 @@
       <td><%= orders[i]['id'] %></td>
       <td><%= JSON.stringify(orders[i]['pizza_order']) %></td>
       <td><%= JSON.stringify(orders[i]['extra']) %></td>
-      <td><%= customers[orders[i]['id']]['name'] %></td>
-      <td><%= customers[orders[i]['id']]['phone'] %></td>
+      <td><%= orders[i]['name'] %></td>
+      <td><%= orders[i]['phone'] %></td>
+      <% if(orders[i]['time_confirmed'] === null){ %>
       <td> <form class="form-inline"  >
     <input id="minutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" ></input>
     <a> &nbsp mins &nbsp</a>
   </div>
   <button type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
-</form></td>
-      <td> </td>
+</form>
+<% } else {
+  var minutesOrder = orders[i]['time_confirmed'].getMinutes()
+  if(minutesOrder <= 9) {
+  minutesOrder = "0" + orders[i]['time_confirmed'].getMinutes() 
+  }
+  %>
+  <td>
+<a><%= orders[i]['time_confirmed'].getHours()%>:<%= minutesOrder %></a>
+  <% } %>
+</td>
+<% if(orders[i]['time_confirmed'] !== null){ %>
+        <td>
+        <button type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button></td>
     </tr>
+    <% } else { %>
+      <td>
+      </tr>
+
+      <% } %>
    <% } %>
-    <tr>
-      <th scope="row"></th>
-      <td>13:30</td>
-      <td>A2X4F3V</td>
-      <td>{Jason File: Large - Thin - Olives, Mushrooms}</td>
-      <td>{Jason File: Garlic Bread, Soda}</td>
-      <td>Tim</td>
-      <td>4167862345</td>
-      <td> Input field Confirm Button</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      <td>13:30</td>
-      <td>A2X4F3V</td>
-      <td>{Jason File: Large - Thin - Olives, Mushrooms}</td>
-      <td>{Jason File: Garlic Bread, Soda}</td>
-      <td>Tim</td>
-      <td>4167862345</td>
-      <td> 45 mins</td>
-      <td> <button type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button> </td>
     </tr>
   </tbody>
 </table>
+
+
   </body>
 </html>
