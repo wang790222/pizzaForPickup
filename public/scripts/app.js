@@ -1,7 +1,6 @@
 
 $(document).ready(function() {
 
-  var time = Date.now();
   let order = {
     //time_placed: time,
     extra: {
@@ -13,42 +12,29 @@ $(document).ready(function() {
     estimated_time: 0,
     cost: 0
   };
-  var toppingTime = 0;
-  var toppingCost = 0;
-  var pizzaTime = 0;
-  var pizzaCost = 0;
+  var previousSizeCost = 5;
+  var previousSizeTime = 5;
+  var previousCrustCost = 5;
+  var previousCrustTime = 5;
+
   var pizza = {
     crust: "thin",
     size: "small",
     toppings: []
   };
 
+  var firstAddPizza = true;
+
+  $("#add_new_pizza").on("click", function() {
+    if (firstAddPizza) {
+      order.estimated_time = 5;
+      order.cost = 5;
+      firstAddPizza = false;
+      updateTimeMoney();
+    }
+  });
 
   $("#checkoutBtn").on('click', function(){
-
-    /***  Fake Data ***//*
-    let localStorage = {
-      //customer_id: 0,
-      time_placed: "2019-01-31 17:01:23+00",
-      //time_confirmed: null,
-      extra: ["extra1", "extra2"],
-      pizza_order: [
-          {
-            size: "Small",
-            crust: "Thin",
-            Topping: ["ToppingA", "ToppingB"]
-          },
-          {
-            size: "Reg",
-            crust: "Thin",
-            Topping: ["ToppingC", "ToppingD"]
-          }
-      ],
-      estimated_time: 30,
-      cost: 25.00,
-      //time_pickup: null
-    };*/
-
     $.ajax({
       type: "POST",
       url: "/",
@@ -94,11 +80,17 @@ $(document).ready(function() {
     let cost = parseInt($(this).data("cost"));
     let time = parseInt($(this).data("time"));
     let size = $(this).attr("id");
+
+    order.cost -= previousSizeCost;
+    order.estimated_time -= previousSizeTime;
+
+    previousSizeCost = cost;
+    previousSizeTime = time;
+
     order.cost += cost;
     order.estimated_time += time;
 
     pizza.size = size;
-
     updateTimeMoney();
   });
 
@@ -107,43 +99,47 @@ $(document).ready(function() {
     let cost = parseInt($(this).data("cost"));
     let time = parseInt($(this).data("time"));
     let crust = $(this).attr("id");
+
+    order.cost -= previousCrustCost;
+    order.estimated_time -= previousCrustTime;
+
+    previousCrustCost = cost;
+    previousCrustTime = time;
+
     order.cost += cost;
     order.estimated_time += time;
 
     pizza.crust = crust;
-
     updateTimeMoney();
   });
 
   // topping
   $('.form-check-inline input[type="checkbox"]').on('click', function() {
     let cost = parseInt($(this).data("cost"));
-    let time = parseInt($(this).data("time"));
     let topping = $(this).attr("id");
-    if ($(this).is(':checked')) {
-      if (time > toppingTime) {
-        order.estimated_time += (time - toppingTime);
-        toppingTime = time;
-      }
-      order.cost += cost;
-      pizzaCost += time;
+    let wasNoTopping = (pizza.toppings.length) ? false : true;
 
+    if ($(this).is(':checked')) {
+      order.cost += cost;
       pizza.toppings.push(topping);
     } else {
-      pizzaCost -= cost;
-      if (time === toppingTime) {
-        order.estimated_time -= (time - toppingTime);
-        toppingTime = 1;
-      }
       order.cost -= cost;
       let index = pizza.toppings.indexOf(topping);
       if (index > -1) {
         pizza.toppings.splice(index, 1);
       }
     }
+
+    if (pizza.toppings.length && wasNoTopping) {
+      order.estimated_time += 1;
+    }
+    if (pizza.toppings.length === 0) {
+      order.estimated_time -= 1;
+    }
     updateTimeMoney();
   });
 
+  // extra
   $( "ul.extra > li > span" ).each(function() {
     $(this).on("click", function() {
       let cost = parseInt($(this).parent("li").data("cost"));
@@ -153,7 +149,7 @@ $(document).ready(function() {
 
       if ($(this).is(".minus")) {
         count--;
-        if (count > 0) {
+        if (count >= 0) {
           order.cost -= cost;
           order.estimated_time -= time;
           let index = order.extra.extra.indexOf(extra);
@@ -165,17 +161,19 @@ $(document).ready(function() {
         }
       } else {
         count++;
+        order.cost += cost;
+        order.estimated_time += time;
         order.extra.extra.push(extra);
       }
+      updateTimeMoney();
       $(this).siblings(".count").val(count);
     });
-    updateTimeMoney();
+
   });
 
   $("#add_pizza").on("click", function() {
     order.pizza_order.pizza_order.push(pizza);
 
-    console.log(order);
     let pizzaIfo = `${pizza.size} / ${pizza.crust} / `;
     let toppingStr = [];
     for (let topping of pizza.toppings) {
@@ -205,31 +203,36 @@ $(document).ready(function() {
     $(this).remove();
   }
 
+  function resetOptions() {
+
+    previousSizeCost = 5;
+    previousSizeTime = 5;
+    previousCrustCost = 5;
+    previousCrustTime = 5;
+
+    $(".nav-item > a").each(function(index) {
+      $(this).removeClass("active show");
+      if (index === 0) {
+        $(this).addClass("active show"); //Small Btn
+      }
+
+      if (index === 3) {
+        $(this).addClass("active show"); //Thin Btn
+      }
+    });
+
+    $('.form-check-inline input[type="checkbox"]').each(function() {
+      $(this).prop('checked', false);
+    });
+  }
+
   function updateTimeMoney() {
 
   $("#est").remove();
   $("#total_amount").remove();
-    let estAndMoneyStr = `<p id="est">Estimated time: ${order.estimated_time}</p>
-                          <p id="total_amount">Total: ${order.cost}</p>`;
+    let estAndMoneyStr = `<p id="est">Estimated time: ${order.estimated_time} mins</p>
+                          <p id="total_amount">Total: ${order.cost} $</p>`;
     $("#time_money").append(estAndMoneyStr);
   }
 
 });
-
-function resetOptions() {
-
-  $(".nav-item > a").each(function(index) {
-    $(this).removeClass("active show");
-    if (index === 0) {
-      $(this).addClass("active show"); //Small Btn
-    }
-
-    if (index === 3) {
-      $(this).addClass("active show"); //Thin Btn
-    }
-  });
-
-  $('.form-check-inline input[type="checkbox"]').each(function() {
-    $(this).prop('checked', false);
-  });
-}
