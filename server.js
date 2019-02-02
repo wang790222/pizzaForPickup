@@ -139,6 +139,47 @@ app.get("/restaurant", (req, res) => {
   });
 });
 
+app.post("/restaurant"), (req, res) => {
+
+  console.log(req.body);
+
+// Update with confirmed pick up time
+
+
+  knex('order')
+    .update({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
+    .returning('id')
+    .then((orderId) => {
+      console.log(`inserted confirmed time: ${timeConfirmed} into DB. `);
+      knex("order")
+        .where({id: req.params.order_id})
+        .update({time_confirmed: timeConfirmed})
+
+      res.json({})
+    })
+
+};
+
+app.post("/restaurant"), (req, res) => {
+
+  console.log(req.body);
+
+    // Update with time picked up 
+
+  knex('order')
+  .insert({name: req.body.customername, phone: req.body.phonenumber, post_code: req.body.postcode})
+  .returning('id')
+  .then((orderId) => {
+    console.log(`inserted pick up time: ${timePickUp} into DB. `);
+    knex("order")
+      .where({id: req.params.order_id})
+      .update({time_pickup: timePickup})
+
+    res.json({})
+  })
+
+};
+
 
 
 

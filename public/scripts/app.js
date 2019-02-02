@@ -47,8 +47,49 @@ $( document ).ready(function() {
     });
   });
 
+//restaurant page 
 
-$("#confirm").on('click', function (e){
+$("#confirmcookminutes").on('click', function (e){
+    // when button confirm button is clicked post the time 
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/restaurant",
+      dataType: "json",
+      data: moment(Date.now()).add(cookminutes, 'm').toDate(),
+      success: function(response) {
+        // update pizza order table to include cust_id
+        // send form data to db, customer table
+        //change view to second panel (order in progress)
+      },
+      error: function(err) {
+        console.log("err:", err);
+      }
+    });
+  })
+
+  $("#pickedupchecked").on('click', function (e){
+
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/restaurant",
+      dataType: "json",
+      data: Date.now(),
+      success: function(response) {
+        // update pizza order table to include cust_id
+        // send form data to db, customer table
+        //change view to second panel (order in progress)
+      },
+      error: function(err) {
+        console.log("err:", err);
+      }
+    });
+  })
+
+  $("#confirm").on('click', function (e){
     // take info from localStorage
     // take info from forms
     // combine info in object
@@ -70,8 +111,6 @@ $("#confirm").on('click', function (e){
       }
     });
   })
-
-
 
 // ------------------------------ Alter local storage -------------------
 var time = Date.now();

@@ -40,10 +40,10 @@
       <td><%= orders[i]['phone'] %></td>
       <% if(orders[i]['time_confirmed'] === null){ %>
       <td> <form class="form-inline"  >
-    <input id="minutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" ></input>
+    <input id="cookminutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" ></input>
     <a> &nbsp mins &nbsp</a>
   </div>
-  <button type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
+  <button id="confirmcookminutes" type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
 </form>
 <% } else {
   var minutesOrder = orders[i]['time_confirmed'].getMinutes()
@@ -57,7 +57,7 @@
 </td>
 <% if(orders[i]['time_confirmed'] !== null){ %>
         <td>
-        <button type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button></td>
+        <button id="pickedupchecked" type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button></td>
     </tr>
     <% } else { %>
       <td>
