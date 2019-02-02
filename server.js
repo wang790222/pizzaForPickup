@@ -7,7 +7,10 @@ const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
+const moment       = require('moment');
+moment().format();
 const app         = express();
+
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -18,6 +21,7 @@ const knexLogger  = require('knex-logger');
 const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
 const toppingRoutes = require("./routes/topping");
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -141,17 +145,20 @@ app.get("/restaurant", (req, res) => {
 
 app.post("/restaurant/confirm_time", (req, res) => {
 let time = req.body.value;
-  console.log(req.body.value);
+  console.log(req.body);
+
+  let timeConfirmedRestaurant = req.body.time_confirmed
 
 // Update with confirmed pick up time
 
   knex('order')
-    //.update(confirm_time = time)
+  .insert({time_confirmed: timeConfirmedRestaurant})
+  .returning('id')
     .then((orderId) => {
-      //console.log(`inserted confirmed time: ${timeConfirmed} into DB. `);
+      console.log(`inserted confirmed time: ${timeConfirmedRestaurant} into DB. `);
       knex("order")
         .where({id: req.params.order_id})
-        .update({time_confirmed: time})
+        .update({time_confirmed: timeConfirmedRestaurant})
 
       res.json({})
     })
@@ -160,15 +167,15 @@ let time = req.body.value;
         
 app.post("/restaurant/pickup_time", (req, res) => {
   console.log("Got the pick up confirm")
-  console.log(req.body.time_pickup);
-
   console.log(req.body);
 
+  let timePickup = req.body.time_pickup
+
   knex('order')
-  .insert({time_pickup: req.body.pickedupchecked})
+  .insert({time_pickup: timePickup})
   .returning('id')
   .then((orderId) => {
-    console.log(`inserted pick up time: ${timePickUp} into DB. `);
+    console.log(`inserted pick up time: ${timePickup} into DB. `);
     knex("order")
       .where({id: req.params.order_id})
       .update({time_pickup: timePickup})

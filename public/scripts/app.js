@@ -49,17 +49,26 @@ $( document ).ready(function() {
 
 //restaurant page 
 
-$("#confirmcookminutes").on('click', function (e){
+$(".confirmCookMinutes").on('click', function (e){
     // when button confirm button is clicked post the time 
+    function addMinutes(date, minutes) {
+      return new Date(date.getTime() + minutes*60000);
+    };
+    console.log("Got confirm the order time")
     e.preventDefault();
-
-    let currenttime = Date.now()
+    let estimateTime = $(this).siblings('#cookminutes').val();
+    console.log("Estimate Time", e, estimateTime, $(this).siblings())
+    ///let nowTime = new Date();
+    let estTimePickup = addMinutes((new Date()), estimateTime)
+    console.log("timepickup", estTimePickup)
 
     $.ajax({
       type: "POST",
       url: "/restaurant/confirm_time",
       dataType: "json",
-      data: currenttime,
+      data: {
+        time_confirmed: confirmedTime
+      },
       //moment(Date.now()).add(cookminutes, 'm').toDate(),
       success: function(response) {
         console.log(response);
@@ -81,6 +90,8 @@ $("#confirmcookminutes").on('click', function (e){
 
     e.preventDefault();
 
+    // Date.prototype.toUnixTime = function() { return this.getTime()/1000|0 };
+    // Date.time = function() { return new Date().toUnixTime(); }
     let currenttime = Date.now()
 
     $.ajax({
