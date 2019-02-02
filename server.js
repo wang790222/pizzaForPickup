@@ -225,15 +225,15 @@ app.post("/customer", (req, res) => {
       knex("order")
         .where({id: req.params.order_id})
         .update({customer_id: customerId})
-        .then((customerId) => {
-          // client.messages.create({
-          //     body: 'Hello from Node',
-          //     to: '+12345678901',  // Text this number
-          //     from: '+14169173801' // From Twilio number
-          // })
-          .then((message) => console.log(message.sid));
+        // .then((customerId) => {
+        //   client.messages.create({
+        //       body: 'Hello from Node',
+        //       to: '+12345678901',  // Text this number
+        //       from: '+14169173801' // From Twilio number
+        //   })
+        //   .then((message) => console.log(message.sid));
 
-        })
+        // })
       res.json({})
     })
   // TWILLIO TO RESTAURANT
