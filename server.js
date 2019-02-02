@@ -14,12 +14,6 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
-const twilio = require('twilio');
-
-// Account SID & Auth Token from www.twilio.com/console
-const client = new twilio(accountSid, authToken);
-
-// DO WE STILL NEED THESE??????*****
 // Seperated Routes for each Resource
 const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
