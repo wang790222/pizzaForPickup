@@ -3,7 +3,7 @@
 <% include ./partials/_header %>
 </div>
   <div class="container">
- <h3>Order Number: <%= orderId %> </h3>
+ <h3>Order Confirmation # <%= orderId %> </h3>
 
 <span>
 </div>
@@ -11,11 +11,9 @@
     <div class="card">
         <h4>Summary </h4>
 
-        <li>Number of Items: <%= items %> </li>
-  <li>Order Amount: $<%= orderAmount %>
- </li>
-  <li>Estimated Time: <%= estimatedTime %> mins</li>
-
+        <h5>Preparation Time: <%= estimatedTime %> mins</h5>
+        <h5>Number of Items: <%= items %> </h5>
+        <h5>Total Cost: $<%= orderAmount %></h5>
 
 
 <% if (!pickedUp) { %>
@@ -24,14 +22,14 @@
         <div class="form-group">
           <label for="phonenumber">Phone Number</label>
           <input name="phonenumber" type="text" class="form-control" maxlength="10" placeholder="Enter Phone Number">
-          <small text text-muted">You will recieve text confirmation of the estimated pickup time. We never share your number with anyone else.</small>
+          <small text text-muted">You will recieve a text confirmation with the estimated pickup time. We will never share your number with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="customername" >Name</label>
           <input name="customername" type="text" class="form-control" maxlength="80" placeholder="Name">
         </div>
         <div class="form-group">
-          <label for="postcode">Postcode</label>
+          <label for="postcode">Postal Code</label>
           <input name="postcode" type="text" class="form-control" size="7" maxlength="6" placeholder="M5V1Y2">
         </div>
         <br>
@@ -42,7 +40,8 @@
   </div>
 </div>
 <% }; %>
-
+<canvas id="pizza"></canvas>
+<iframe src="https://giphy.com/embed/8Ajc7LGGMYssG3Xwlm" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 <% if (!pickedUp && customerId) { %>
   <div class="container">

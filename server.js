@@ -163,7 +163,7 @@ app.get("/:id", (req, res) => {
             pickedUp: results[0].time_pickup,
             customerId: results[0].customer_id
           };
-
+          console.log(templateVars);
           res.render('confirmation', templateVars);
       });
     });

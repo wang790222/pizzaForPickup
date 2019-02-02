@@ -25,30 +25,11 @@ $(document).ready(function() {
 
 
   $("#checkoutBtn").on('click', function(){
-
-    /***  Fake Data ***//*
-    let localStorage = {
-      //customer_id: 0,
-      time_placed: "2019-01-31 17:01:23+00",
-      //time_confirmed: null,
-      extra: ["extra1", "extra2"],
-      pizza_order: [
-          {
-            size: "Small",
-            crust: "Thin",
-            Topping: ["ToppingA", "ToppingB"]
-          },
-          {
-            size: "Reg",
-            crust: "Thin",
-            Topping: ["ToppingC", "ToppingD"]
-          }
-      ],
-      estimated_time: 30,
-      cost: 25.00,
-      //time_pickup: null
-    };*/
-
+    if (order.extra.extra.length === 0 && order.pizza_order.pizza_order.length === 0){
+      alert("please add something to your order");
+      // event.stopImmediatePropagation()
+      return;
+    }
     $.ajax({
       type: "POST",
       url: "/",
