@@ -15,10 +15,8 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 const twilio = require('twilio');
-// Account SID & Auth Token from www.twilio.com/console
-const accountSid = 'AC8a4c0b326f64585e722a136c2440cfee';
-const authToken = '89caf6bf7793d0ff4d5aab087d49df65';
 
+// Account SID & Auth Token from www.twilio.com/console
 const client = new twilio(accountSid, authToken);
 
 // DO WE STILL NEED THESE??????*****
