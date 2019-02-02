@@ -6,9 +6,13 @@
 
     <h1>New Order </h1>
 
+    <section>
+      <ol id="pizza_info">
+      </ol>
+    </section>
 <!-- add pizza form -->
     <p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="true" aria-controls="collapsePizzaForm">
+    <button id="add_new_pizza" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="true" aria-controls="collapsePizzaForm">
       Add New Pizza
     </button>
     </p>
@@ -20,41 +24,46 @@
 
           <% for (i = 0; i < sizes.length; i++) { %>
           <li class="nav-item">
-            <a class="nav-link" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
+            <% if(i === 0){ %>
+              <a class="nav-link active show" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
               aria-controls="pills-home" aria-selected="true"><%= sizes[i]['name'] %></a>
+            <% } else { %>
+              <a class="nav-link" id="<%= sizes[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= sizes[i]['time_prep'] %>" data-cost="<%= sizes[i]['cost'] %>" href="  #pills-home"  role="tab"
+              aria-controls="pills-home" aria-selected="true"><%= sizes[i]['name'] %></a>
+            <% } %>
           </li>
           <% } %>
-
         </ul>
-
       <br>
 
       <h4>Crust</h4>
-        <ul class="nav nav-pills mb-3" id="crust" role="tablist">
+
+
+      <ul class="nav nav-pills mb-3" id="crust" role="tablist">
 
           <% for (i = 0; i < crusts.length; i++) { %>
-          <li class="nav-item" id="<%= crusts[i]['name'].toLowerCase() %>"data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>">
-            <a class="nav-link" data-toggle="pill" href="  #pills-home"  role="tab"
+          <li class="nav-item">
+            <% if(i === 0){ %>
+              <a class="nav-link active show" id="<%= crusts[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>" href="  #pills-home"  role="tab"
               aria-controls="pills-home" aria-selected="true"><%= crusts[i]['name'] %></a>
+            <% } else { %>
+              <a class="nav-link" id="<%= crusts[i].name.toLowerCase() %>" data-toggle="pill" data-time="<%= crusts[i]['time_prep'] %>" data-cost="<%= crusts[i]['cost'] %>" href="  #pills-home"  role="tab"
+              aria-controls="pills-home" aria-selected="true"><%= crusts[i]['name'] %></a>
+            <% } %>
           </li>
           <% } %>
-
         </ul>
       <br>
       <h4>Toppings</h4>
-      <% for ( i = 0; i < toppings.length; i++) { %>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>"value="option1">
+      <% for ( i = 0; i < toppings.length; i++) { %>
+        <input style="margin-left:3px; class="form-check-input" type="checkbox" id="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= toppings[i]['time_prep'] %>" data-cost="<%= toppings[i]['cost'] %>"value="option1">
         <label for="<%= toppings[i]['name'].toLowerCase().split(' ').join('') %>"><%= toppings[i]['name'] %></label>
-      </div>
       <% } %>
-
+      </div>
 
       <br>
-
-      <button type="button" class="btn btn-lg btn-primary">Add Pizza</button>
-      <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
-
+      <button type="button" id="add_pizza" class="btn btn-lg btn-primary">Add Pizza</button>
       <br>
 
       </div>
@@ -62,21 +71,15 @@
 
 <!-- extras form -->
 
-<ul>
+<ul class="extra">
   <% for ( i = 0; i < extras.length; i++) { %>
-  <li>
-    <h4><%= extras[i]['name'] %></h4>
-    <div class="qty mt-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
-        <span class="minus bg-dark">-</span>
-        <input type="number" class="count" name="qty" value="0">
-        <span class="plus bg-dark">+</span>
-    </div>
-  </li>
+    <li style="width:50%;" class="qty mt-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
+      <h4 style="display:inline;"><%= extras[i]['name'] %></h4>
+      <span style="float:right;" class="plus bg-dark">+</span>
+      <input style="float:right;" type="number" class="count" name="qty" value="0">
+      <span style="float:right;" class="minus bg-dark">-</span>
+    </li>
   <% } %>
-
-<br>
-
-
 </ul>
 </div>
 <!-- css to implement (just copy pasta) -->
