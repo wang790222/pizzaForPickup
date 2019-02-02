@@ -26,6 +26,7 @@ $(document).ready(function() {
   var firstAddPizza = true;
 
   $("#add_new_pizza").on("click", function() {
+
     if (firstAddPizza) {
       order.estimated_time = 5;
       order.cost = 5;
@@ -35,6 +36,12 @@ $(document).ready(function() {
   });
 
   $("#checkoutBtn").on('click', function(){
+
+    if (order.extra.extra.length === 0 && order.pizza_order.pizza_order.length === 0){
+      alert("please add something to your order");
+      return;
+    }
+
     $.ajax({
       type: "POST",
       url: "/",
