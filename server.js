@@ -133,26 +133,57 @@ app.get("/restaurant", (req, res) => {
       feedbacks: feedbacks,
     };
 
-    console.log(templateVars)
-
     res.render("restaurant", templateVars);
   });
 });
 
 
-
-
-// app.get("/restaurant", (req, res) => {
-
-//   let templateVars = {};
-//   res.render('restaurant');
-// });
-
 // Customer page
 app.get("/:id", (req, res) => {
+    new Promise(function(resolve, reject) {
+      knex
+        .select()
+        .from("order")
+        .where('id', 1)
+        .then((results) => {
+        resolve(results);
+      });
+    })
+    .then(function(values) {
 
-  res.render('confirmation', {orderId: req.params.id});
+    const order = values[0];
+    const customerId = order.customer_id;
+    const pickedUp = order.time_pickup;
+
+
+    function countItems (order) {
+
+      let extras = order.extra;
+      let pizzas = order.pizza_order;
+      let counter = 0;
+
+      for (let itemQuantity in extras) {
+        counter+= extras[itemQuantity];
+      };
+      const numOfPizzas = pizzas.pizza.length;
+      counter += numOfPizzas;
+      return counter;
+    }
+
+    let numOfItems = countItems(order);
+
+    let templateVars = {
+      orderId: req.params.id,
+      order: order,
+      customerId: customerId,
+      pickedUp: pickedUp,
+      quantityOfItems: numOfItems
+    };
+
+    res.render("confirmation", templateVars);
+  });
 });
+
 
 app.post("/", (req, res) => {
 
@@ -185,13 +216,8 @@ app.post("/customer", (req, res) => {
 
       res.json({})
     })
-
-
-  // for ()
-
-  // knex('${}').insert()
   // TWILLIO
-  // localStorage.clear();
+
 });
 
 
