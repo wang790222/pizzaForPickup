@@ -144,6 +144,7 @@ app.get("/:id", (req, res) => {
       knex
         .select()
         .from("order")
+        // ***** hard coded to reflect seed data, pls replace with req.params.id!!****
         .where('id', 1)
         .then((results) => {
         resolve(results);
