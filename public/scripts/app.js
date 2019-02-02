@@ -40,7 +40,7 @@ $(document).ready(function() {
   $("#checkoutBtn").on('click', function(){
 
     if (order.extra.extra.length === 0 && order.pizza_order.pizza_order.length === 0){
-      alert("please add something to your order");
+      toastr.warning("please add something to your order");
       return;
     }
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
   $("#add_pizza").on("click", function() {
 
     if (pizza.crust === "" || pizza.size === ""){
-      alert("please select size and crust");
+      toastr.warning("please select size and crust");
       return;
     }
 
