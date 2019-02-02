@@ -11,11 +11,12 @@
     <div class="card">
         <h4>Summary </h4>
         <li>Number of Items: <%=quantityOfItems%></li>
+        <!-- UPDATE THESE TWO FIELDS -->
   <li>Order Amount: $33.50 </li>
-  <li>Estimated Time: 30 mins</li>
+  <li>Estimated Preparation Time: 30 mins</li>
 
 
-
+<% if (!pickedUp) { %>
   <h4>  <br> Details for pickup <br> </h4>
       <form id="customer" action="/customer">
         <div class="form-group">
@@ -38,9 +39,10 @@
     </div>
   </div>
 </div>
+<% } %>
 
 
-
+<% if (!pickedUp && customerId) { %>
   <div class="container">
     <div class="card">
       <div class="card-body">
@@ -54,6 +56,10 @@
 </div>
   </div>
 </div>
+<% } %>
+
+
+<% if (pickedUp) { %>
 <div class="container">
     <div class="card">
       <div class="card-body">
@@ -90,6 +96,8 @@
   </div>
 </div>
 </div>
+<% } %>
+
 </body>
 </html>
 

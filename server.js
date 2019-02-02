@@ -153,6 +153,8 @@ app.get("/:id", (req, res) => {
     .then(function(values) {
 
     const order = values[0];
+
+    // taking a shortcut here to make the customer and order IDs match.
     const customerId = order.customer_id;
     const pickedUp = order.time_pickup;
 
