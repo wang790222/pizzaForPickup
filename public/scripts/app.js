@@ -74,12 +74,19 @@ $(document).ready(function() {
       dataType: "json",
       data: $("form#customer").serialize(),
       success: function(response) {
+        // console.log('hello')
+        // if(data.success == true){ // if true (1)
+        //   setTimeout(function(){// wait for 5 secs(2)
+        //     location.reload(); // then reload the page.(3)
+        //   }, 5000);
+        // }
         // update pizza order table to include cust_id
         // send form data to db, customer table
         //change view to second panel (order in progress)
 
       },
       error: function(err) {
+        console.log('in an error---trouble')
         console.log("err:", err);
       }
     }).done();
@@ -189,6 +196,7 @@ $(document).ready(function() {
 
   });
 
+// add pizza to cart
   $("#add_pizza").on("click", function() {
 
     if (pizza.crust === "" || pizza.size === ""){

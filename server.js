@@ -187,12 +187,15 @@ app.post("/customer", (req, res) => {
   console.log("Post Customer - orderid:", req.body.order_id);
 
   let cb = function(id) {
+      req.redirect
+      console.log("info", req.body)
     new Promise(function(resolve, reject) {
+        console.log('here')
         knex('order')
-        .where({ id: req.body.order_id})
+        .where({ id: parsInt(req.body.order_id)})
         .update({ customer_id: id})
         .then(function(values) {
-
+          console.log('are we there')
         });
       });
   };
@@ -204,9 +207,10 @@ app.post("/customer", (req, res) => {
         phone: req.body.phonenumber,
         post_code: req.body.postcode
       })
-      .returning('id')
       .into("customer")
       .then(function (id) {
+        window.location.reload()
+        console.log('in callback')
         cb(parseInt(id));
 
 /*
