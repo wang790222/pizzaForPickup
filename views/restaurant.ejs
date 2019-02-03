@@ -43,7 +43,7 @@
     <input id="cookminutes" class="form-control" placeholder="<%= orders[i]['estimated_time'] %> " value="<%= orders[i]['estimated_time']%>"></input>
     <p> &nbsp mins &nbsp</p>
   </div>
-  <button id="confirmcookminutes" class="btn btn-danger mb-2 confirmCookMinutes" margin-top=2% >Confirm</button>
+  <button id="confirmcookminutes" class="btn btn-danger mb-2 confirmCookMinutes" margin-top=2% order_id="<%= orders[i]['id'] %>" >Confirm</button>
 </form>
 <% } else {
   var minutesOrder = orders[i]['time_confirmed'].getMinutes()

@@ -59,13 +59,16 @@ $(".confirmCookMinutes").on('click', function (e){
    /// let confirmedTime = addMinutes((new Date()), estimateTime)
    let confirmedTime = moment().add(Number(estimateTime),'m').format();
     console.log("timepickup", estimateTime, confirmedTime)
+   let orderId = $(this).siblings('#cookminutes').attr('order_id')
+   console.log('hope this is the orderID', orderId)
 
     $.ajax({
       type: "POST",
       url: "/restaurant/confirm_time",
       dataType: "json",
       data: {
-        time_confirmed: confirmedTime
+        time_confirmed: confirmedTime,
+        order_id : orderId
       },
       //moment(Date.now()).add(cookminutes, 'm').toDate(),
       success: function(response) {
@@ -92,6 +95,7 @@ $(".confirmCookMinutes").on('click', function (e){
     // Date.time = function() { return new Date().toUnixTime(); }
     ///let currentTime = new Date()
     const currentTime = moment().format();
+    let orderId = $(this).attr('order_id')
 
     console.log("Got the pick up confirm", currentTime)
 
@@ -100,7 +104,8 @@ $(".confirmCookMinutes").on('click', function (e){
       url: "/restaurant/pickup_time",
       dataType: "json",
       data: {
-        time_pickup: currentTime
+        time_pickup: currentTime,
+        order_id : orderId
       },
       success: function(response) {
         // update pizza order table to include cust_id
