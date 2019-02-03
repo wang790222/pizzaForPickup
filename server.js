@@ -104,7 +104,6 @@ app.get("/", (req, res) => {
 });
 
 // Restaurant page
-
 app.get("/restaurant", (req, res) => {
 
   Promise.all([
@@ -113,10 +112,9 @@ app.get("/restaurant", (req, res) => {
         .select()
         .from("order")
         .whereNotNull("order.customer_id")
-        .whereNull("order.time_pickup")
         .leftOuterJoin('customer', 'customer.id', 'order.customer_id')
         .then((results) => {
-        resolve(results);
+          resolve(results);
       });
     }),
 
@@ -133,7 +131,26 @@ app.get("/restaurant", (req, res) => {
 
     const confirmedOrders = values[0];
     const feedbacks = values[2];
+/*
+    const numMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+    let dateDisplay = [];
+    let pizzaDisplay = [];
+    let extraDisplay = [];
+
+    for (let order in confirmedOrders) {
+      let timePlaced = order.time_placed;
+      let date = timePlaced.split(" ");
+      let year = date.split("-")[0].substring(2,3);
+      console.log(year);
+      let month = numMonth[parseInt(date.split("-")[1])];
+      console.log(month);
+      let day = timePlaced.split("-")[2];
+      console.log(day);
+    }
+*/
+
+    console.log(confirmedOrders);
     let templateVars = {
       orders: confirmedOrders,
       feedbacks: feedbacks,
@@ -142,7 +159,6 @@ app.get("/restaurant", (req, res) => {
     res.render("restaurant", templateVars);
   });
 });
-
 
 // Customer page
 app.get("/:id", (req, res) => {
