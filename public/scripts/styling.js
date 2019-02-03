@@ -38,6 +38,176 @@
   }
 
   }));
-
-
 });
+
+
+//   jQuery(document).ready(function($){
+
+
+
+
+
+// });
+
+// $(document).ready(function() {
+//   $("#mushrooms").click(function(event) {
+//     if ($(this).is("#mushroom"))
+//       $("#mushroomsimg").show();
+//     else
+//       $("mushroomsimg").hide();
+//   });
+// });
+
+$(document).ready(function(){
+
+  $("#extracheeseimg").hide();
+  
+    $("#extracheese").click(function(){
+  
+      $("#extracheeseimg").toggle();
+  
+    });
+  
+  });
+
+  $(document).ready(function(){
+
+    $("#onionsimg").hide();
+    
+      $("#onions").click(function(){
+    
+        $("#onionsimg").toggle();
+    
+      });
+    
+    });
+
+
+  $(document).ready(function(){
+
+    $("#pepperoniimg").hide();
+    
+      $("#pepperoni").click(function(){
+    
+        $("#pepperoniimg").toggle();
+    
+      });
+    
+    });
+
+    $(document).ready(function(){
+
+      $("#greenpeppersimg").hide();
+      
+        $("#greenpeppers").click(function(){
+      
+          $("#greenpeppersimg").toggle();
+      
+        });
+      });
+
+  $(document).ready(function(){
+
+    $("#mushroomsimg").hide();
+    
+      $("#mushrooms").click(function(){
+    
+        $("#mushroomsimg").toggle();
+    
+      });
+    
+    });
+
+    $(document).ready(function(){
+
+      $("#baconimg").hide();
+      
+        $("#bacon").click(function(){
+      
+          $("#baconimg").toggle();
+      
+        });
+      });
+
+  $(document).ready(function(){
+
+    $("#goatcheeseimg").hide();
+    
+      $("#goatcheese").click(function(){
+    
+        $("#goatcheeseimg").toggle();
+    
+      });
+    
+    });
+
+    $(document).ready(function(){
+
+      $("#spinachimg").hide();
+      
+        $("#spinach").click(function(){
+      
+          $("#spinachimg").toggle();
+      
+        });
+      });
+
+  $(document).ready(function(){
+
+    $("#truffleimg").hide();
+    
+      $("#truffle").click(function(){
+    
+        $("#truffleimg").toggle();
+    
+      });
+    
+    });
+
+    $(document).ready(function(){
+
+      $("#olivesimg").hide();
+      
+        $("#olives").click(function(){
+      
+          $("#olivesimg").toggle();
+      
+        });
+      
+      });
+
+      $(document).ready(function(){
+
+        $("#crustthinimg").hide();
+        
+          $("#thin").click(function(){
+        
+            $("#crustthinimg").toggle();
+        
+          });
+        
+        });
+
+        $(document).ready(function(){
+
+          $("#crustregularimg").hide();
+          
+            $("#regular").click(function(){
+          
+              $("#crustregularimg").toggle();
+          
+            });
+          
+          });
+
+          $(document).ready(function(){
+
+            $("#cruststuffedimg").hide();
+            
+              $("#stuffed").click(function(){
+            
+                $("#cruststuffedimg").toggle();
+            
+              });
+            
+            });
