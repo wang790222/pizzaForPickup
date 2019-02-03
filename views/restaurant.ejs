@@ -28,7 +28,12 @@
 
     <tr>
       <th scope="row"></th>
-        <td><%= orders[i]['time_placed'] %></td>
+        <td>
+          <% var minutesorder = orders[i]['time_placed'].getMinutes();
+          if(minutesorder<= 9){
+            minutesorder = "0" + orders[i]['time_placed'].getMinutes();
+          } %>
+          <%= orders[i]['time_placed'].getHours() %>:<%= orders[i]['time_placed'].getMinutes() %></td>
         <td><%= orders[i]['id'] %></td>
         <td>
           <% if (orders[i]['pizza_order'] !== null){ %>

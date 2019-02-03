@@ -232,16 +232,14 @@ app.post("/customer", (req, res) => {
       .then(function (id) {
         cb(parseInt(id));
 
-/*
-        client.messages.create({
-            body: 'Order Pizza!',
-            to: '+15149437993',   //Tim's number
-            from: '+18737714590'
-          })
-          .then((message) => console.log(message.sid))
-          .done();
-*/
-        });
+      client.messages.create({
+        body: 'New Pizza Order!',
+        to: '+15149437993',   //Tim's number
+        from: '+18737714590'
+        })
+        .then((message) => console.log(message.sid))
+        .done();
+      });
     });
 
     res.status(200);
@@ -272,6 +270,14 @@ app.post("/confirm/orders", (req, res) => {
     )
     .then(function(values) {
       console.log("Confirm.");
+      client.messages.create({
+            body: `Your Order Is Confirmed!`,
+            to: '+16476731359',   //Yu-Ning's number
+            from: '+18737714590'
+      })
+      .then((message) => console.log(message.sid))
+      .done();
+
       res.redirect('back');
     });
   });
