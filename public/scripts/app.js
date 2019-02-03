@@ -61,7 +61,11 @@ $(document).ready(function() {
   });
 
   $("#confirm").on('click', function (e){
-
+    console.log(req.body)
+    if (req.body.phonenumber === "" || customername === "" || postcode === ""){
+      toastr.warning("please enter your user information");
+      return;
+    }
     e.preventDefault();
 
     $.ajax({

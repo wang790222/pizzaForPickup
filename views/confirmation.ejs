@@ -18,7 +18,7 @@
   <h5>Order total: $<%= orderAmount %></h5>
 <br>
 
-<% if (!pickedUp) { %>
+<% if (!pickedUp && !customerId) { %>
   <h4>  <br> Details for Your Pickup <br> </h4>
       <form id="customer">
         <div class="form-group">
