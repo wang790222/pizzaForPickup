@@ -65,7 +65,8 @@ $(document).ready(function() {
     // take info from forms
     // combine info in object
     // pass to database
-    e.preventDefault();
+     e.preventDefault();
+
 
     $.ajax({
       type: "POST",
@@ -76,11 +77,12 @@ $(document).ready(function() {
         // update pizza order table to include cust_id
         // send form data to db, customer table
         //change view to second panel (order in progress)
+
       },
       error: function(err) {
         console.log("err:", err);
       }
-    });
+    }).done();
   });
 
   // size

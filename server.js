@@ -184,10 +184,19 @@ app.post("/", (req, res) => {
 
 app.post("/customer", (req, res) => {
 
-
   console.log("Post Customer - orderid:", req.body.order_id);
 
-  Promise.all([
+  let cb = function(id) {
+    new Promise(function(resolve, reject) {
+        knex('order')
+        .where({ id: req.body.order_id})
+        .update({ customer_id: id})
+        .then(function(values) {
+
+        });
+      });
+  };
+
     new Promise(function(resolve, reject) {
       knex
       .insert({
@@ -198,12 +207,9 @@ app.post("/customer", (req, res) => {
       .returning('id')
       .into("customer")
       .then(function (id) {
-        new Promise(function(resolve, reject) {
-          knex('order')
-          .where({ id: req.body.order_id})
-          .update({ customer_id: id});
-        });
+        cb(parseInt(id));
 
+/*
         client.messages.create({
             body: 'Order Pizza!',
             to: '+15149437993',   //Tim's number
@@ -211,13 +217,9 @@ app.post("/customer", (req, res) => {
           })
           .then((message) => console.log(message.sid))
           .done();
+*/
         });
-    })
-  ])
-  .then(function(values) {
-    console.log("Insert Customer table / Update Order table");
-  });
-
+    });
 });
 
 app.listen(PORT, () => {
