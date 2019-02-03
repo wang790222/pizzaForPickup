@@ -23,6 +23,9 @@
   </thead>
   <tbody>
     <% for (i = orders.length - 1 ; i >= 0; i--) { %>
+
+    <% if (orders[i]['time_pickup'] === null) { %>
+
     <tr>
       <th scope="row"></th>
         <td><%= orders[i]['time_placed'] %></td>
@@ -55,18 +58,22 @@
         <td><%= orders[i]['phone'] %></td>
         <td>
           <% if(orders[i]['time_confirmed'] === null){ %>
-            <form class="form-inline"  >
-              <input style="width:40%;" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" >
+            <form class="form-inline" action="/confirm/orders" method="POST" >
+              <input style="width:50%;" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" >
               </input> <p> &nbsp mins &nbsp</p>
-              <button type="submit" class="btn btn-danger mb-2" margin-top=2% >Confirm</button>
+              <button type="submit class="btn btn-danger mb-2" margin-top=2% name="timeAndOrderId" value="<%= orders[i]['estimated_time'] %>,<%= orders[i]['id'] %>" >Confirm</button>
             </form>
           <% } else { %>
-            <p> 123:456 </p>
+            <p> <%= orders[i]['time_confirmed'] %> </p>
           <% } %>
         </td>
         <td>
-          <button type="submit" class="btn btn-dark mb-2" margin-top=2% >Picked Up</button>
+          <form action="/pickup/orders" method="POST" >
+            <button type="submit" class="btn btn-dark mb-2" margin-top=2% name="order_id" value="<%= orders[i]['id'] %>">Picked Up</button>
+          </form>
         </td>
+      </tr>
+      <% } %>
   <% } %>
   </tbody>
   </table>

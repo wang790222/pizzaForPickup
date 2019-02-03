@@ -286,6 +286,67 @@ app.post("/customer", (req, res) => {
     res.status(200);
 });
 
+app.post("/confirm/orders", (req, res) => {
+
+  let est = parseInt(req.body.timeAndOrderId.split(",")[0]);
+  let orderId = parseInt(req.body.timeAndOrderId.split(",")[1]);
+
+  let now = Date.now();
+
+  let timestampConfirmed = now + (est);
+
+  let confirmed = new Date(timestampConfirmed);
+
+  new Promise(function(resolve, reject) {
+    knex('order')
+    .where(
+      {
+        id: orderId
+      }
+    )
+    .update(
+      {
+        time_confirmed: confirmed
+      }
+    )
+    .then(function(values) {
+      console.log("Confirm.");
+      res.redirect('back');
+    });
+  });
+
+  res.redirect('back');
+});
+
+
+app.post("/pickup/orders", (req, res) => {
+
+  let orderId = parseInt(req.body.order_id);
+
+  let now = Date.now();
+  let time_pickup = new Date(now);
+
+  new Promise(function(resolve, reject) {
+    knex('order')
+    .where(
+      {
+        id: orderId
+      }
+    )
+    .update(
+      {
+        time_pickup: time_pickup
+      }
+    )
+    .then(function(values) {
+      console.log("Pickup.");
+      res.redirect('back');
+    });
+  });
+
+  res.redirect('back');
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
