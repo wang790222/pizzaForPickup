@@ -170,15 +170,13 @@ app.get("/:id", (req, res) => {
 
 });
 
-
 app.post("/", (req, res) => {
-
   knex
     .insert(req.body.data)
     .returning('id')
     .into("order")
     .then(function (id) {
-      res.send(id);
+      res.status(200).send(id);
     });
 });
 
@@ -189,10 +187,19 @@ app.post("/customer", (req, res) => {
   let cb = function(id) {
     new Promise(function(resolve, reject) {
         knex('order')
-        .where({ id: req.body.order_id})
-        .update({ customer_id: id})
+        .where(
+          {
+            id: req.body.order_id
+          }
+        )
+        .update(
+          {
+            customer_id: id
+          }
+        )
         .then(function(values) {
-
+          console.log("Updata.");
+          res.status(200).send("ok");
         });
       });
   };
@@ -220,6 +227,8 @@ app.post("/customer", (req, res) => {
 */
         });
     });
+
+    res.status(200);
 });
 
 app.listen(PORT, () => {
