@@ -43,7 +43,7 @@ $(document).ready(function() {
       toastr.warning("please add something to your order");
       return;
     }
-
+    console.log(order)
     $.ajax({
       type: "POST",
       url: "/",
