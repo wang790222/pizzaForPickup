@@ -163,7 +163,7 @@ app.get("/:id", (req, res) => {
             pickedUp: results[0].time_pickup,
             customerId: results[0].customer_id
           };
-
+          console.log(templateVars)
           res.render('confirmation', templateVars);
       });
     });
@@ -204,13 +204,13 @@ app.post("/customer", (req, res) => {
           .update({ customer_id: id});
         });
 
-        client.messages.create({
-            body: 'Order Pizza!',
-            to: '+15149437993',   //Tim's number
-            from: '+18737714590'
-          })
-          .then((message) => console.log(message.sid))
-          .done();
+        // client.messages.create({
+        //     body: 'Order Pizza!',
+        //     to: '+15149437993',   //Tim's number
+        //     from: '+18737714590'
+        //   })
+        //   .then((message) => console.log(message.sid))
+        //   .done();
         });
     })
   ])
