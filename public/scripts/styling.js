@@ -183,6 +183,10 @@ $(document).ready(function(){
           $("#thin").click(function(){
         
             $("#crustthinimg").toggle();
+
+            $("#crustregularimg").hide();
+
+            $("#cruststuffedimg").hide();
         
           });
         
@@ -195,6 +199,10 @@ $(document).ready(function(){
             $("#regular").click(function(){
           
               $("#crustregularimg").toggle();
+
+              $("#crustthinimg").hide();
+
+              $("#cruststuffedimg").hide();
           
             });
           
@@ -207,7 +215,12 @@ $(document).ready(function(){
               $("#stuffed").click(function(){
             
                 $("#cruststuffedimg").toggle();
+
+                $("#crustregularimg").hide();
+
+                $("#crustthinimg").hide();
             
               });
             
             });
+
