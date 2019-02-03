@@ -9,6 +9,7 @@ $(document).ready(function() {
     pizza_order: {
       pizzas: []
     },
+    time_placed: "",
     estimated_time: 0,
     cost: 0
   };
@@ -43,6 +44,12 @@ $(document).ready(function() {
       toastr.warning("please add something to your order");
       return;
     }
+
+    let d = new Date();
+    let date = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() }`;
+    let time = `${d.getHours()}:${(d.getMinutes())}:${d.getSeconds()}`;
+
+    order.time_placed = `${date} ${time}`;
 
     $.ajax({
       type: "POST",
