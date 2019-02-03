@@ -42,6 +42,33 @@
 
 });
 
+// $(document).ready(function(){
+
+// $("#add_pizza").on("click", function() {
+//   if(pizza.crust !== "" || pizza.size !== "")
+
+//   $("#extracheeseimg").hide();
+//   $("#onionsimg").hide();
+//   $("#pepperoniimg").hide();
+//   $("#mushroomsimg").hide();
+//   $("#baconimg").hide();
+//   $("#greenpeppersimg").hide();
+//   $("#goatcheeseimg").hide();
+//   $("#spinachimg").hide();
+//   $("#olivesimg").hide();
+//   $("#truffleimg").hide();
+//   $("#largeimg").hide();
+//   $("#mediumimg").hide();
+//   $("#smallimg").hide();
+//   $("#crustthinimg").hide();
+//   $("#crustregularimg").hide();
+//   $("#cruststuffedimg").hide();
+//   $("#placeholderimg").show();
+
+// });
+  
+// });
+
 
 $(document).ready(function(){
 
