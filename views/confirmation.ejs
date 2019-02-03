@@ -3,40 +3,42 @@
 <% include ./partials/_header %>
 </div>
   <div class="container">
- <h3>Order Number: <%= orderId %> </h3>
+ <h2>Order Number: <%= orderId %> </h2>
 
 <span>
 </div>
   <div class="container">
-    <div class="card">
+    <div class="card" style="padding-bottom: 100px;">
         <h4>Summary </h4>
+        <br>
 
-        <li>Number of Items: <%= items %> </li>
-  <li>Order Amount: $<%= orderAmount %>
- </li>
-  <li>Estimated Time: <%= estimatedTime %> mins</li>
-
-
+  <h6>Preparation time: <%= estimatedTime %> mins</h6>
+        <h6>Number of items: <%= items %> </h6>
+        <br>
+  <h5>Order total: $<%= orderAmount %></h5>
+<br>
 
 <% if (!pickedUp) { %>
-  <h4>  <br> Details for pickup <br> </h4>
+  <h4>  <br> Details for Your Pickup <br> </h4>
       <form id="customer" action="/customer" method="POST">
         <div class="form-group">
+          <br>
           <label for="phonenumber">Phone Number</label>
           <input name="phonenumber" type="text" class="form-control" maxlength="10" placeholder="Enter Phone Number">
-          <small text text-muted">You will recieve text confirmation of the estimated pickup time. We never share your number with anyone else.</small>
+          <small text text-muted">You will recieve a text confirmation of the estimated pickup time. We will never share your number with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="customername" >Name</label>
           <input name="customername" type="text" class="form-control" maxlength="80" placeholder="Name">
         </div>
         <div class="form-group">
-          <label for="postcode">Postcode</label>
+          <label for="postcode">Postal Code</label>
           <input name="postcode" type="text" class="form-control" size="7" maxlength="6" placeholder="M5V1Y2">
         </div>
         <br>
         <input name="order_id" type=text hidden value="<%= orderId %>">
         <button id="confirm" class="btn btn-warning">Confirm Order</button>
+        <br>
       </form>
     </div>
   </div>
