@@ -200,6 +200,24 @@ $(document).ready(function() {
       toastr.warning("please select size and crust");
       return;
     }
+      $("#extracheeseimg").hide();
+      $("#onionsimg").hide();
+      $("#pepperoniimg").hide();
+      $("#mushroomsimg").hide();
+      $("#baconimg").hide();
+      $("#greenpeppersimg").hide();
+      $("#goatcheeseimg").hide();
+      $("#spinachimg").hide();
+      $("#olivesimg").hide();
+      $("#truffleimg").hide();
+      $("#largeimg").hide();
+      $("#mediumimg").hide();
+      $("#smallimg").hide();
+      $("#crustthinimg").hide();
+      $("#crustregularimg").hide();
+      $("#cruststuffedimg").hide();
+      $("#placeholderimg").show();
+    
 
     order.cost += pizza.cost;
     order.estimated_time += pizza.time;
