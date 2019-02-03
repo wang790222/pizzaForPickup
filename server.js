@@ -153,20 +153,59 @@ app.get("/:id", (req, res) => {
         .where("id", "=", req.params.id)
         .then((results) => {
 
-          let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizzas.length : 0;
-          let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
-          let templateVars = {
-            orderId: req.params.id,
-            orderAmount: (results[0].cost) ? results[0].cost : 0,
-            estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
-            items: pizzaAmount + extraAmount,
-            pickedUp: results[0].time_pickup,
-            customerId: results[0].customer_id
-          };
+          const pizzaOrder = results[0].pizza_order.pizzas;
 
-          res.render('confirmation', templateVars);
-      });
+          function returnPizzas () {
+            let pizzas = '';
+            let i = 1;
+            pizzaOrder.forEach((pizza) => {
+
+            let toppings = '';
+            pizza.toppings.forEach((topping) => {
+              toppings += topping + "<br\>";
+            })
+
+            pizzas += `<h6>PIZZA #${i}</h6> \n size: ${pizza.size} <br\> crust: ${pizza.crust} <br\> toppings: ${toppings} <br\>`;
+            i++;
+            })
+
+            return pizzas;
+          }
+
+          console.log(returnPizzas());
+
+          let extras = results[0].extra.extra;
+
+          const map = extras.reduce(function(prev, cur) {
+            prev[cur] = (prev[cur] || 0) + 1;
+            return prev;
+          }, {});
+
+          let items = Object.keys(map);
+          let quantities = Object.values(map);
+          let extrasOrder = '';
+
+          for (let i = 0; i < items.length; i++) {
+            extrasOrder += `${items[i]} qty: ${quantities[i]} <br\>`
+          }
+
+
+        let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizzas.length : 0;
+        let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
+        let templateVars = {
+          pizzas: returnPizzas(),
+          extras: extrasOrder,
+          orderId: req.params.id,
+          orderAmount: (results[0].cost) ? results[0].cost : 0,
+          estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
+          items: pizzaAmount + extraAmount,
+          pickedUp: results[0].time_pickup,
+          customerId: results[0].customer_id
+        };
+
+        res.render('confirmation', templateVars);
     });
+  });
 
 });
 
