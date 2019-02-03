@@ -153,7 +153,7 @@ app.get("/:id", (req, res) => {
         .where("id", "=", req.params.id)
         .then((results) => {
 
-          let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizza_order.length : 0;
+          let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizzas.length : 0;
           let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
           let templateVars = {
             orderId: req.params.id,

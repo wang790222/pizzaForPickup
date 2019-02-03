@@ -7,7 +7,7 @@ $(document).ready(function() {
       extra: []
     },
     pizza_order: {
-      pizza_order: []
+      pizzas: []
     },
     estimated_time: 0,
     cost: 0
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   $("#checkoutBtn").on('click', function(){
 
-    if (order.extra.extra.length === 0 && order.pizza_order.pizza_order.length === 0){
+    if (order.extra.extra.length === 0 && order.pizza_order.pizzas.length === 0){
       toastr.warning("please add something to your order");
       return;
     }
@@ -168,7 +168,7 @@ $(document).ready(function() {
         order.extra.extra.push(extra);
       }
 
-      if (order.pizza_order.pizza_order.length === 0 && wasNoExtra) {
+      if (order.pizza_order.pizzas.length === 0 && wasNoExtra) {
         order.estimated_time = 1;
       }
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
     order.cost += pizza.cost;
     order.estimated_time += pizza.time;
-    order.pizza_order.pizza_order.push(pizza);
+    order.pizza_order.pizzas.push(pizza);
 
     let pizzaIfo = `${pizza.size} / ${pizza.crust} / `;
     let toppingStr = [];
@@ -212,8 +212,8 @@ $(document).ready(function() {
 
   function deletePizzaHandler() {
 
-    let costDeduct = order.pizza_order.pizza_order[($(this).index())].cost;
-    let timeDeduct = order.pizza_order.pizza_order[($(this).index())].time;
+    let costDeduct = order.pizza_order.pizzas[($(this).index())].cost;
+    let timeDeduct = order.pizza_order.pizzas[($(this).index())].time;
 
     order.cost -= costDeduct;
     order.estimated_time -= timeDeduct;
@@ -221,7 +221,7 @@ $(document).ready(function() {
     updateTimeMoney();
     resetOptions();
 
-    order.pizza_order.pizza_order.splice($(this).index(), 1);
+    order.pizza_order.pizzas.splice($(this).index(), 1);
     $(this).remove();
   }
 

@@ -6,16 +6,15 @@ exports.seed = function(knex, Promise) {
           {
             time_placed: "2019-01-30 17:01:23",
             extra: {
-              drink: 2,
-              garlicBread: 3
+              extra: ["Sugarcravin Soda"]
             },
             pizza_order: {
-              pizza : [
+              pizzas : [
                 {
                   size: "Small",
                   crust: "Thin",
                   topping: ["Onions", "Bacon", "Goat Cheese"]
-                } 
+                }
               ]
             },
             estimated_time: 22,
@@ -25,11 +24,10 @@ exports.seed = function(knex, Promise) {
               customer_id: 1,
               time_placed: "2019-01-30 18:20:13",
               extra: {
-                drink: 0,
-                garlicBread: 1
+                extra: ["Guilty Greens", "After Pizza Dessert"]
               },
               pizza_order: {
-                pizza : [
+                pizzas : [
                   {
                     size: "Large",
                     crust: "Thin",
@@ -49,11 +47,10 @@ exports.seed = function(knex, Promise) {
               customer_id: 2,
               time_placed: "2019-01-30 17:01:23",
               extra: {
-                drink: 0,
-                garlicBread: 1
+                extra: ["Somekind of Slaw"]
               },
               pizza_order: {
-                pizza : [
+                pizzas : [
                   {
                     size: "Small",
                     crust: "Thin",
@@ -74,11 +71,10 @@ exports.seed = function(knex, Promise) {
               time_placed: "2019-01-30 17:01:23",
               time_confirmed: "2019-01-30 17:02:33",
               extra: {
-                drink: 0,
-                garlicBread: 1
+                extra: ["Somekind of Slaw"]
               },
               pizza_order: {
-                pizza : [
+                pizzas : [
                   {
                     size: "Small",
                     crust: "Thin",
@@ -99,11 +95,10 @@ exports.seed = function(knex, Promise) {
               time_placed: "2019-01-30 17:01:23",
               time_confirmed: "2019-01-30 17:02:33",
               extra: {
-                drink: 0,
-                garlicBread: 1
+                extra: ["Somekind of Slaw"]
               },
               pizza_order: {
-                pizza : [
+                pizzas : [
                   {
                     size: "Small",
                     crust: "Thin",
@@ -124,11 +119,10 @@ exports.seed = function(knex, Promise) {
               time_placed: "2019-01-30 17:01:23",
               time_confirmed: "2019-01-30 17:02:33",
               extra: {
-                drink: 0,
-                garlicBread: 1
+                extra: ["Somekind of Slaw"]
               },
               pizza_order: {
-                pizza : [
+                pizzas : [
                   {
                     size: "Small",
                     crust: "Thin",
