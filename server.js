@@ -239,8 +239,8 @@ app.post("/customer", (req, res) => {
         })
         .then((message) => console.log(message.sid))
         .done();
-      });
 */
+      });
     });
 
     res.status(200);
@@ -321,18 +321,3 @@ app.post("/pickup/orders", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
