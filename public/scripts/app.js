@@ -208,6 +208,7 @@ $(document).ready(function() {
 
     resetOptions();
     updateTimeMoney();
+    $('#add_new_pizza').click();
 
     $("#pizza_info").append(function() {
       return $(appendStr).click(deletePizzaHandler);
