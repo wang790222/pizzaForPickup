@@ -147,12 +147,13 @@ $(document).ready(function() {
   });
 
   // extra
-  $( "ul.extra > li > span" ).each(function() {
+  $( "div.extra > div > span" ).each(function() {
     $(this).on("click", function() {
-      let cost = parseFloat($(this).parent("li").data("cost"));
-      let time = parseFloat($(this).parent("li").data("time"));
-      let extra = $(this).parent("li").attr("id");
-      let count = Number($(this).siblings(".count").val());
+      console.log(Number($(this).siblings('.count').val()))
+      let cost = parseFloat($(this).parent("div").data("cost"));
+      let time = parseFloat($(this).parent("div").data("time"));
+      let extra = $(this).parent("div").attr("id");
+      let count = Number($(this).siblings('.count').val());
       let wasNoExtra = (order.extra.extra.length) ? false : true;
 
       if ($(this).is(".minus")) {
