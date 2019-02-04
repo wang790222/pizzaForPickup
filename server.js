@@ -172,48 +172,59 @@ app.get("/:id", (req, res) => {
         .where("id", "=", req.params.id)
         .then((results) => {
 
-          const pizzaOrder = results[0].pizza_order.pizzas;
 
-          function returnPizzas () {
-            let pizzas = '';
-            let i = 1;
-            pizzaOrder.forEach((pizza) => {
+          let orderedItems;
 
-            let toppings = '';
-            pizza.toppings.forEach((topping) => {
-              toppings += topping + "<br\>";
-            })
+          if (results[0].pizza_order) {
+            console.log(results[0].pizza_order);
+            const pizzaOrder = results[0].pizza_order.pizzas;
 
-            pizzas += `<h6>PIZZA #${i}</h6> \n size: ${pizza.size} <br\> crust: ${pizza.crust} <br\> toppings: ${toppings} <br\>`;
-            i++;
-            })
+            function returnPizzas () {
+              let pizzas = '';
+              let i = 1;
+              pizzaOrder.forEach((pizza) => {
 
-            return pizzas;
+              let toppings = '';
+              pizza.toppings.forEach((topping) => {
+                toppings += topping + "<br\>";
+              })
+
+              pizzas += `<h6>PIZZA #${i}</h6> \n size: ${pizza.size} <br\> crust: ${pizza.crust} <br\> toppings: ${toppings} <br\>`;
+              i++;
+              })
+
+              return pizzas;
+            }
+
+            orderedItems = returnPizzas();
+
           }
 
-          console.log(returnPizzas());
+          if (results[0].extra) {
 
-          let extras = results[0].extra.extra;
+            let extras = results[0].extra.extra;
 
-          const map = extras.reduce(function(prev, cur) {
-            prev[cur] = (prev[cur] || 0) + 1;
-            return prev;
-          }, {});
+            const map = extras.reduce(function(prev, cur) {
+              prev[cur] = (prev[cur] || 0) + 1;
+              return prev;
+            }, {});
 
-          let items = Object.keys(map);
-          let quantities = Object.values(map);
-          let extrasOrder = '';
+            let items = Object.keys(map);
+            let quantities = Object.values(map);
+            let extrasOrder = '';
 
-          for (let i = 0; i < items.length; i++) {
-            extrasOrder += `${items[i]} qty: ${quantities[i]} <br\>`
+            for (let i = 0; i < items.length; i++) {
+              extrasOrder += `${items[i]} qty: ${quantities[i]} <br\>`
+            }
+
+            orderedItems += extrasOrder;
+
           }
-
 
         let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizzas.length : 0;
         let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
         let templateVars = {
-          pizzas: returnPizzas(),
-          extras: extrasOrder,
+          orderedItems: orderedItems,
           orderId: req.params.id,
           orderAmount: (results[0].cost) ? results[0].cost : 0,
           estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
