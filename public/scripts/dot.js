@@ -1,13 +1,33 @@
 
 $(document).ready(function() {
 
+    $('#in-progress').append(`<p id="demo"></p>
+        <script>
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+    var fiveMinutes = 60 * 5,
+    display = document.querySelector('#demo');
+    startTimer(fiveMinutes, display)
+</script>`)
 
 
+       $( "li.list-group-item" ).append(`
 
-    $(document).ready(function (e){
-       $( "form#customer" ).append(`
-
-<div class="ring-container">
+<p class="ring-container">
   <style scoped>
   .ring-container {
     position: relative;
@@ -16,15 +36,16 @@ $(document).ready(function() {
 .circle {
     width: 15px;
     height: 15px;
-    background-color: #62bd19;
+    background-color: red;
     border-radius: 50%;
     position: absolute;
     top: 23px;
     left: 23px;
+    filter: drop-shadow(0 0 30px #333);
 }
 
 .ringring {
-    border: 3px solid #62bd19;
+    border: 3px solid red;
     -webkit-border-radius: 30px;
     height: 25px;
     width: 25px;
@@ -43,6 +64,6 @@ $(document).ready(function() {
   </style>
     <div class="ringring"></div>
     <div class="circle"></div>
-</div>`)
+</p>`)
 
-}
+});

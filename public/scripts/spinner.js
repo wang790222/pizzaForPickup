@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     $(document).ready(function (e){
-       $( "form#customer" ).append(`
+       $( "#recieved" ).append(`
     <div class="box">
       <style scoped>
         * {
@@ -9,8 +9,8 @@ $(document).ready(function() {
     }
     .box {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 200px;
+      height: 200px;
       display: block;
       background: #FFFFFF;
       margin: auto;
