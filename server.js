@@ -2,28 +2,29 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT          = process.env.PORT || 8080;
+const ENV           = process.env.ENV || "development";
+const express       = require("express");
+const bodyParser    = require("body-parser");
+const sass          = require("node-sass-middleware");
+const app           = express();
+const moment        = require("moment-timezone");
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig    = require("./knexfile");
+const knex          = require("knex")(knexConfig[ENV]);
+const morgan        = require('morgan');
+const knexLogger    = require('knex-logger');
 
 // Seperated Routes for each Resource
 const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
 const toppingRoutes = require("./routes/topping");
 
-var accountSid = process.env.TWILIO_ACCOUNT_SID;
-var authToken = process.env.TWILIO_AUTHTOKEN;
+var accountSid      = process.env.TWILIO_ACCOUNT_SID;
+var authToken       = process.env.TWILIO_AUTHTOKEN;
 
-var twilio = require('twilio');
-var client = new twilio(accountSid, authToken);
+var twilio          = require('twilio');
+var client          = new twilio(accountSid, authToken);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -48,6 +49,8 @@ app.use("/api/crust", crustRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
+
+  console.log(moment().tz("America/New_York").format());
 
   Promise.all([
     new Promise(function(resolve, reject) {
@@ -255,6 +258,7 @@ app.post("/customer", (req, res) => {
         .then(function(values) {
           console.log("Updata.");
           res.status(200).send("ok");
+          return;
         });
       });
   };
@@ -283,18 +287,15 @@ app.post("/customer", (req, res) => {
     });
 
     res.status(200);
+    return;
 });
 
 app.post("/confirm/orders", (req, res) => {
 
   let est = parseInt(req.body.timeAndOrderId.split(",")[0]);
   let orderId = parseInt(req.body.timeAndOrderId.split(",")[1]);
-
-  let now = Date.now();
-
-  let timestampConfirmed = now + (est);
-
-  let confirmed = new Date(timestampConfirmed);
+  let tempConfirmedTime = moment().add(est, 'm').tz("America/New_York").format();
+  let confirmedTime = tempConfirmedTime.split("T")[0] + " " + tempConfirmedTime.split("T")[1].split("-")[0];
 
   new Promise(function(resolve, reject) {
     knex('order')
@@ -305,7 +306,7 @@ app.post("/confirm/orders", (req, res) => {
     )
     .update(
       {
-        time_confirmed: confirmed
+        time_confirmed: confirmedTime
       }
     )
     .then(function(values) {
@@ -322,10 +323,12 @@ app.post("/confirm/orders", (req, res) => {
       */
 
       res.redirect('back');
+      return;
     });
   });
 
   res.redirect('back');
+  return;
 });
 
 
@@ -333,8 +336,8 @@ app.post("/pickup/orders", (req, res) => {
 
   let orderId = parseInt(req.body.order_id);
 
-  let now = Date.now();
-  let time_pickup = new Date(now);
+  let tempPickupTime = moment().tz("America/New_York").format();
+  let pickupTime = tempPickupTime.split("T")[0] + " " + tempPickupTime.split("T")[1].split("-")[0];
 
   new Promise(function(resolve, reject) {
     knex('order')
@@ -345,7 +348,7 @@ app.post("/pickup/orders", (req, res) => {
     )
     .update(
       {
-        time_pickup: time_pickup
+        time_pickup: pickupTime
       }
     )
     .then(function(values) {

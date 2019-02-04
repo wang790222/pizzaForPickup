@@ -213,7 +213,7 @@ $(document).ready(function() {
       $("#crustregularimg").hide();
       $("#cruststuffedimg").hide();
       $("#placeholderimg").show();
-    
+
 
     order.cost += pizza.cost;
     order.estimated_time += pizza.time;
