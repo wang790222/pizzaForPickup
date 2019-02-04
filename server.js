@@ -134,24 +134,6 @@ app.get("/restaurant", (req, res) => {
 
     const confirmedOrders = values[0];
     const feedbacks = values[2];
-/*
-    const numMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    let dateDisplay = [];
-    let pizzaDisplay = [];
-    let extraDisplay = [];
-
-    for (let order in confirmedOrders) {
-      let timePlaced = order.time_placed;
-      let date = timePlaced.split(" ");
-      let year = date.split("-")[0].substring(2,3);
-      console.log(year);
-      let month = numMonth[parseInt(date.split("-")[1])];
-      console.log(month);
-      let day = timePlaced.split("-")[2];
-      console.log(day);
-    }
-*/
 
     let templateVars = {
       orders: confirmedOrders,
@@ -284,7 +266,7 @@ app.post("/customer", (req, res) => {
       .into("customer")
       .then(function (id) {
         cb(parseInt(id));
-/*
+
       client.messages.create({
         body: 'New Pizza Order!',
         to: '+15149437993',   //Tim's number
@@ -292,7 +274,7 @@ app.post("/customer", (req, res) => {
         })
         .then((message) => console.log(message.sid))
         .done();
-*/
+
       });
     });
 
@@ -302,7 +284,6 @@ app.post("/customer", (req, res) => {
 
 app.post("/confirm/orders", (req, res) => {
 
-  //let est = parseInt(req.body.Confirm.split(",")[0]);
   let est = parseInt(req.body.est);
   let orderId = parseInt(req.body.order_id);
   console.log("id:", orderId);
@@ -323,7 +304,7 @@ app.post("/confirm/orders", (req, res) => {
     )
     .then(function(values) {
       console.log("Confirm.");
-/*
+
       client.messages.create({
             body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
             to: '+16476731359',   //Yu-Ning's number
@@ -331,7 +312,7 @@ app.post("/confirm/orders", (req, res) => {
       })
       .then((message) => console.log(message.sid))
       .done();
-*/
+
       setPickupMsg(est, orderId);
 
       res.redirect('back');
@@ -379,14 +360,14 @@ app.listen(PORT, () => {
 
 function setPickupMsg(mins, orderId) {
   setTimeout(function(){
-/*
+
     client.messages.create({
           body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
           to: '+16476731359',   //Yu-Ning's number
           from: '+18737714590'
     })
     .then((message) => console.log(message.sid))
-    .done();*/
+    .done();
 
   }, mins * 6000);
 }
