@@ -153,7 +153,6 @@ app.get("/restaurant", (req, res) => {
     }
 */
 
-    console.log(confirmedOrders);
     let templateVars = {
       orders: confirmedOrders,
       feedbacks: feedbacks,
@@ -285,7 +284,7 @@ app.post("/customer", (req, res) => {
       .into("customer")
       .then(function (id) {
         cb(parseInt(id));
-
+/*
       client.messages.create({
         body: 'New Pizza Order!',
         to: '+15149437993',   //Tim's number
@@ -293,7 +292,7 @@ app.post("/customer", (req, res) => {
         })
         .then((message) => console.log(message.sid))
         .done();
-
+*/
       });
     });
 
@@ -303,11 +302,13 @@ app.post("/customer", (req, res) => {
 
 app.post("/confirm/orders", (req, res) => {
 
-  let est = parseInt(req.body.timeAndOrderId.split(",")[0]);
-  let orderId = parseInt(req.body.timeAndOrderId.split(",")[1]);
+  //let est = parseInt(req.body.Confirm.split(",")[0]);
+  let est = parseInt(req.body.est);
+  let orderId = parseInt(req.body.order_id);
+  console.log("id:", orderId);
   let tempConfirmedTime = moment().add(est, 'm').tz("America/New_York").format();
   let confirmedTime = tempConfirmedTime.split("T")[0] + " " + tempConfirmedTime.split("T")[1].split("-")[0];
-
+  console.log("confirmedTime:", confirmedTime);
   new Promise(function(resolve, reject) {
     knex('order')
     .where(
@@ -322,7 +323,7 @@ app.post("/confirm/orders", (req, res) => {
     )
     .then(function(values) {
       console.log("Confirm.");
-
+/*
       client.messages.create({
             body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
             to: '+16476731359',   //Yu-Ning's number
@@ -330,7 +331,7 @@ app.post("/confirm/orders", (req, res) => {
       })
       .then((message) => console.log(message.sid))
       .done();
-
+*/
       setPickupMsg(est, orderId);
 
       res.redirect('back');
@@ -378,14 +379,14 @@ app.listen(PORT, () => {
 
 function setPickupMsg(mins, orderId) {
   setTimeout(function(){
-
+/*
     client.messages.create({
           body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
           to: '+16476731359',   //Yu-Ning's number
           from: '+18737714590'
     })
     .then((message) => console.log(message.sid))
-    .done();
+    .done();*/
 
   }, mins * 6000);
 }
