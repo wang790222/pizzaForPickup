@@ -269,7 +269,7 @@ app.post("/customer", (req, res) => {
 
       client.messages.create({
         body: 'New Pizza Order!',
-        to: '+15149437993',   //Tim's number
+        to: '+16476731359',   //Yu-Ning's number
         from: '+18737714590'
         })
         .then((message) => console.log(message.sid))
@@ -306,8 +306,8 @@ app.post("/confirm/orders", (req, res) => {
       console.log("Confirm.");
 
       client.messages.create({
-            body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
-            to: '+16476731359',   //Yu-Ning's number
+            body: `Your Order Is Confirmed! http://192.168.1.108:8080/${orderId}`,
+            to: '+15149437993',   //Tim's number
             from: '+18737714590'
       })
       .then((message) => console.log(message.sid))
@@ -362,7 +362,7 @@ function setPickupMsg(mins, orderId) {
   setTimeout(function(){
 
     client.messages.create({
-          body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
+          body: `Pick Up Your Pizza! http://192.168.1.108:8080/${orderId}`,
           to: '+16476731359',   //Yu-Ning's number
           from: '+18737714590'
     })
