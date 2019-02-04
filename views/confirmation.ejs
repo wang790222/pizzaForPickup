@@ -3,13 +3,13 @@
 <% include ./partials/_header %>
 <script src="/scripts/spinner.js"></script>
 <script src="/scripts/dot.js"></script>
-<link rel="stylesheet" href="/styles/flipclock.css">
-<script src="/scripts/flipclock.js"></script>
+
 <!-- <meta http-equiv="refresh" content="8"/> -->
 </div>
   <div class="container">
  <h2>Order Number: <%= orderId %> </h2>
-
+ <h2 id="time_confirmed"><%if (typeof time_confirmed !== 'undefined') {%><%= time_confirmed %><%}%></h2>
+ <h2 id="customer_id"><%if (typeof customer_id !== 'undefined') {%><%= customer_id %><%}%></h2>
 <span>
 </div>
   <div class="container">
@@ -57,16 +57,16 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-  <h4>  <br> THANK YOU <br> </h4>
-  <h6> Your order is being processed. We will continue to update you! </h6>
-    <ul class="list-group list-group-flush">
-  <li class="list-group-item"><span id="recieved">1. RECIEVED ORDER</span></li>
-  <li class="list-group-item" id="in_progress" value="<%= estimatedTime %>">2. IN PROGRESS </li>
-  <li class="list-group-item" id="ready">3. READY FOR PICKUP</li>
-</ul>
-</div>
+        <h4>  <br> THANK YOU <br> </h4>
+        <h6> Your order is being processed. We will continue to update you! </h6>
+          <ul class="list-group list-group-flush">
+            <% if (!pickedUp && customerId && (typeof time_confirmed !== 'undefined')) { %><li class="list-group-item" id="recieved">1. RECIEVED ORDER</li> <% } %>
+            <% if (!pickedUp && customerId && (typeof time_confirmed !== 'undefined')) { %><li class="list-group-item" id="in_progress" value="<%= estimatedTime %>">2. IN PROGRESS </li>
+            <% if (!pickedUp && customerId && (typeof time_confirmed !== 'undefined') &&(typeof time_pickup !== 'undefined')) %><li class="list-group-item" id="ready">3. READY FOR PICKUP</li><% } %>
+          </ul>
+      </div>
+    </div>
   </div>
-</div>
 <% }; %>
 
 
