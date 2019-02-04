@@ -285,7 +285,7 @@ app.post("/customer", (req, res) => {
       .into("customer")
       .then(function (id) {
         cb(parseInt(id));
-/*
+
       client.messages.create({
         body: 'New Pizza Order!',
         to: '+15149437993',   //Tim's number
@@ -293,7 +293,7 @@ app.post("/customer", (req, res) => {
         })
         .then((message) => console.log(message.sid))
         .done();
-*/
+
       });
     });
 
@@ -323,15 +323,15 @@ app.post("/confirm/orders", (req, res) => {
     .then(function(values) {
       console.log("Confirm.");
 
-      /*
       client.messages.create({
-            body: `Your Order Is Confirmed!`,
+            body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
             to: '+16476731359',   //Yu-Ning's number
             from: '+18737714590'
       })
       .then((message) => console.log(message.sid))
       .done();
-      */
+
+      setPickupMsg(est, orderId);
 
       res.redirect('back');
       return;
@@ -374,3 +374,18 @@ app.post("/pickup/orders", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+function setPickupMsg(mins, orderId) {
+  setTimeout(function(){
+
+    client.messages.create({
+          body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
+          to: '+16476731359',   //Yu-Ning's number
+          from: '+18737714590'
+    })
+    .then((message) => console.log(message.sid))
+    .done();
+
+  }, mins * 6000);
+}

@@ -33,7 +33,7 @@
           if(minutesorder<= 9){
             minutesorder = "0" + orders[i]['time_placed'].getMinutes();
           } %>
-          <%= orders[i]['time_placed'].getHours() %>:<%= orders[i]['time_placed'].getMinutes() %></td>
+          <%= orders[i]['time_placed'].getHours() %>:<%= minutesorder %></td>
         <td><%= orders[i]['id'] %></td>
         <td>
           <% if (orders[i]['pizza_order'] !== null){ %>
@@ -73,7 +73,7 @@
             if(minutesorder<= 9){
               minutesorder = "0" + orders[i]['time_confirmed'].getMinutes();
             } %>
-            <%= orders[i]['time_confirmed'].getHours() %>:<%= orders[i]['time_confirmed'].getMinutes() %>
+            <%= orders[i]['time_confirmed'].getHours() %>:<%= minutesorder %>
             <% } %>
         </td>
         <td>
