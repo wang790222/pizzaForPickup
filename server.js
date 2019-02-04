@@ -2,28 +2,29 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT          = process.env.PORT || 8080;
+const ENV           = process.env.ENV || "development";
+const express       = require("express");
+const bodyParser    = require("body-parser");
+const sass          = require("node-sass-middleware");
+const app           = express();
+const moment        = require("moment-timezone");
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig    = require("./knexfile");
+const knex          = require("knex")(knexConfig[ENV]);
+const morgan        = require('morgan');
+const knexLogger    = require('knex-logger');
 
 // Seperated Routes for each Resource
 const crustRoutes   = require("./routes/crust");
 const sizeRoutes    = require("./routes/size");
 const toppingRoutes = require("./routes/topping");
 
-var accountSid = process.env.TWILIO_ACCOUNT_SID;
-var authToken = process.env.TWILIO_AUTHTOKEN;
+var accountSid      = process.env.TWILIO_ACCOUNT_SID;
+var authToken       = process.env.TWILIO_AUTHTOKEN;
 
-var twilio = require('twilio');
-var client = new twilio(accountSid, authToken);
+var twilio          = require('twilio');
+var client          = new twilio(accountSid, authToken);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -48,6 +49,8 @@ app.use("/api/crust", crustRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
+
+  console.log(moment().tz("America/New_York").format());
 
   Promise.all([
     new Promise(function(resolve, reject) {
@@ -131,26 +134,7 @@ app.get("/restaurant", (req, res) => {
 
     const confirmedOrders = values[0];
     const feedbacks = values[2];
-/*
-    const numMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    let dateDisplay = [];
-    let pizzaDisplay = [];
-    let extraDisplay = [];
-
-    for (let order in confirmedOrders) {
-      let timePlaced = order.time_placed;
-      let date = timePlaced.split(" ");
-      let year = date.split("-")[0].substring(2,3);
-      console.log(year);
-      let month = numMonth[parseInt(date.split("-")[1])];
-      console.log(month);
-      let day = timePlaced.split("-")[2];
-      console.log(day);
-    }
-*/
-
-    console.log(confirmedOrders);
     let templateVars = {
       orders: confirmedOrders,
       feedbacks: feedbacks,
@@ -266,6 +250,7 @@ app.post("/customer", (req, res) => {
         .then(function(values) {
           console.log("Updata.");
           res.status(200).send("ok");
+          return;
         });
       });
   };
@@ -281,32 +266,30 @@ app.post("/customer", (req, res) => {
       .into("customer")
       .then(function (id) {
         cb(parseInt(id));
-/*
+
       client.messages.create({
         body: 'New Pizza Order!',
-        to: '+15149437993',   //Tim's number
+        to: '+16476731359',   //Yu-Ning's number
         from: '+18737714590'
         })
         .then((message) => console.log(message.sid))
         .done();
-*/
+
       });
     });
 
     res.status(200);
+    return;
 });
 
 app.post("/confirm/orders", (req, res) => {
 
-  let est = parseInt(req.body.timeAndOrderId.split(",")[0]);
-  let orderId = parseInt(req.body.timeAndOrderId.split(",")[1]);
-
-  let now = Date.now();
-
-  let timestampConfirmed = now + (est);
-
-  let confirmed = new Date(timestampConfirmed);
-
+  let est = parseInt(req.body.est);
+  let orderId = parseInt(req.body.order_id);
+  console.log("id:", orderId);
+  let tempConfirmedTime = moment().add(est, 'm').tz("America/New_York").format();
+  let confirmedTime = tempConfirmedTime.split("T")[0] + " " + tempConfirmedTime.split("T")[1].split("-")[0];
+  console.log("confirmedTime:", confirmedTime);
   new Promise(function(resolve, reject) {
     knex('order')
     .where(
@@ -316,27 +299,29 @@ app.post("/confirm/orders", (req, res) => {
     )
     .update(
       {
-        time_confirmed: confirmed
+        time_confirmed: confirmedTime
       }
     )
     .then(function(values) {
       console.log("Confirm.");
 
-      /*
       client.messages.create({
-            body: `Your Order Is Confirmed!`,
-            to: '+16476731359',   //Yu-Ning's number
+            body: `Your Order Is Confirmed! http://192.168.1.108:8080/${orderId}`,
+            to: '+15149437993',   //Tim's number
             from: '+18737714590'
       })
       .then((message) => console.log(message.sid))
       .done();
-      */
+
+      setPickupMsg(est, orderId);
 
       res.redirect('back');
+      return;
     });
   });
 
   res.redirect('back');
+  return;
 });
 
 
@@ -344,8 +329,8 @@ app.post("/pickup/orders", (req, res) => {
 
   let orderId = parseInt(req.body.order_id);
 
-  let now = Date.now();
-  let time_pickup = new Date(now);
+  let tempPickupTime = moment().tz("America/New_York").format();
+  let pickupTime = tempPickupTime.split("T")[0] + " " + tempPickupTime.split("T")[1].split("-")[0];
 
   new Promise(function(resolve, reject) {
     knex('order')
@@ -356,7 +341,7 @@ app.post("/pickup/orders", (req, res) => {
     )
     .update(
       {
-        time_pickup: time_pickup
+        time_pickup: pickupTime
       }
     )
     .then(function(values) {
@@ -371,3 +356,18 @@ app.post("/pickup/orders", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+function setPickupMsg(mins, orderId) {
+  setTimeout(function(){
+
+    client.messages.create({
+          body: `Pick Up Your Pizza! http://192.168.1.108:8080/${orderId}`,
+          to: '+16476731359',   //Yu-Ning's number
+          from: '+18737714590'
+    })
+    .then((message) => console.log(message.sid))
+    .done();
+
+  }, mins * 6000);
+}
