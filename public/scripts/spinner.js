@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $(document).ready(function (e){
+
        $( "#recieved" ).append(`
     <div class="box">
       <style scoped>
@@ -14,8 +14,8 @@ $(document).ready(function() {
       display: block;
       background: #FFFFFF;
       margin: auto;
-      margin-top: 15%;
       border-radius: 50%;
+      diplay: hidden;
     }
     .pizza-slice-1 {
       position: absolute;
@@ -412,6 +412,5 @@ $(document).ready(function() {
         </div>
       </div>
     </div>`
-    )
-    })
-  })
+  )
+})
