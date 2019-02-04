@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="378px" height="101px" viewBox="0 0 378 101" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>logopizza</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M85.8771446,43.231034 C84.8026294,41.2102179 82.2928493,40.4446734 80.272816,41.5211339 C78.253059,42.597318 77.4879158,45.1084143 78.5638121,47.1295068 C78.7234701,47.4307499 78.680379,47.7060143 78.6165711,47.882891 C78.5497246,48.0664005 78.4008394,48.3126461 78.0685407,48.4475145 L74.3662973,49.9515191 C70.1853561,41.3893055 64.4815866,33.7924517 57.3881292,27.3486128 C50.2872137,20.898141 42.1537693,15.9287352 33.1872303,12.5561942 L34.462561,8.93105112 C34.5749846,8.6115676 34.8059087,8.45182584 34.9793779,8.37388955 C35.1586479,8.29401867 35.4445408,8.22603169 35.7768394,8.36421661 C44.951652,12.1590507 53.32265,17.4606531 60.6555944,24.1228242 C64.5669401,27.6755583 68.1642179,31.6127229 71.3474346,35.8251518 C72.7274546,37.6508509 75.3256267,38.012619 77.1511976,36.6315989 C78.9759398,35.2508553 79.337242,32.6502152 77.957222,30.8247925 C74.4646334,26.2030599 70.5176547,21.8825704 66.2253948,17.9843739 C58.182276,10.6777084 49.00332,4.86316363 38.9426539,0.70269225 C36.5947416,-0.269024063 33.9178454,-0.231161397 31.5989367,0.805225456 C29.2899721,1.83608491 27.4848419,3.79554699 26.6462228,6.17813127 L0.234419263,81.2589696 C-0.302838316,82.7886766 0.100726374,84.4922202 1.26722445,85.6192563 L1.49483383,85.8384176 C2.28235124,86.5984346 3.3181949,87 4.37254564,87 C4.89571574,87 5.42551525,86.9007832 5.9293496,86.6957168 L17.0474049,82.1809393 C17.2244651,82.420552 17.3109235,82.7607632 17.3109235,83.188031 L17.3280495,83.1902419 C17.4965467,84.8744397 18.9163431,86.1905128 20.644959,86.1905128 C22.4868271,86.1905128 23.9778896,84.6972866 23.9778896,82.8544526 L23.9778896,80.686884 C23.9778896,80.1620577 24.1030195,79.6687376 24.3179225,79.2270986 L28.4416852,77.5517447 C29.7258551,78.016046 30.6451318,79.2422989 30.6451318,80.686884 L30.6536948,80.6772111 C30.7368385,82.4454252 32.1914393,83.8554641 33.9791673,83.8554641 C35.8210354,83.8554641 37.313479,82.3622379 37.313479,80.5194039 L37.313479,75.5168337 C37.313479,74.8623899 37.5032456,74.2535472 37.829191,73.7386702 L41.4286787,72.2769502 C42.8918424,72.6298744 43.980445,73.9437366 43.980445,75.5168337 L43.980445,82.8544526 C43.980445,84.6972866 45.4728886,86.1905128 47.3136518,86.1905128 C49.1544151,86.1905128 50.6476873,84.6972866 50.6476873,82.8544526 L50.6476873,70.0143104 C50.6476873,69.4074023 50.8117649,68.8416732 51.0932382,68.352775 L54.8946463,66.8078677 C56.2909636,67.2061166 57.3149295,68.488749 57.3149295,70.0132049 L57.3149295,73.3489887 C57.3149295,75.1907173 58.8070969,76.6836671 60.6478601,76.6836671 C62.4886234,76.6836671 63.9821718,75.1907173 63.9821718,73.3489887 L63.9821718,64.5095762 C63.9821718,63.9502036 64.121113,63.4234428 64.3650196,62.9613524 L81.1846347,56.1297666 C83.6112711,55.1442318 85.5147374,53.1684639 86.4058392,50.7093252 C87.2950074,48.2587539 87.1019261,45.532642 85.8771446,43.231034 Z M30.4346484,20.3799476 C31.658325,20.8439725 32.8634946,21.3428201 34.0504333,21.8728974 C33.4808574,22.7744158 33.146349,23.8398215 33.146349,24.9864799 C33.146349,28.2100576 35.7586086,30.8225815 38.9804967,30.8225815 C41.2905662,30.8225815 43.2824245,29.4752786 44.2265615,27.524384 C46.8819122,29.3196824 49.4176575,31.3062287 51.8175001,33.4859576 C57.9861562,39.0899086 62.9698073,45.6741433 66.6654212,53.0789201 L45.3173739,61.7500234 C44.5038914,59.5661491 42.3943612,58.0060414 39.912756,58.0060414 C36.7284345,58.0060414 34.1465596,60.5713061 34.1465596,63.7343588 C34.1465596,64.5709303 34.3310779,65.3632826 34.6559185,66.0801859 L10.9759799,75.6981323 L30.4346484,20.3799476 Z" id="path-1"></path>
+        <filter x="-10.3%" y="-5.7%" width="120.7%" height="123.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M55.3950178,55.2662499 C55.3950178,53.8432515 54.2417411,52.6888889 52.8181851,52.6888889 C51.3954831,52.6888889 50.2419929,53.8432515 50.2419929,55.2662499 C50.2419929,56.6900818 51.3954831,57.8444444 52.8181851,57.8444444 C54.2417411,57.8444444 55.3950178,56.6900818 55.3950178,55.2662499 Z" id="path-3"></path>
+        <filter x="-174.7%" y="-97.0%" width="449.3%" height="487.9%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M30.9181495,62.3559828 C30.9181495,63.7794424 29.7646592,64.9333333 28.3419572,64.9333333 C26.9184013,64.9333333 25.7651246,63.7794424 25.7651246,62.3559828 C25.7651246,60.9316687 26.9184013,59.7777778 28.3419572,59.7777778 C29.7646592,59.7777778 30.9181495,60.9316687 30.9181495,62.3559828 Z" id="path-5"></path>
+        <filter x="-174.7%" y="-97.0%" width="449.3%" height="487.9%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M47.6654804,45.5996796 C47.6654804,47.0239347 46.5122037,48.1777778 45.0895017,48.1777778 C43.6659457,48.1777778 42.5124555,47.0239347 42.5124555,45.5996796 C42.5124555,44.1762789 43.6659457,43.0222222 45.0895017,43.0222222 C46.5122037,43.0222222 47.6654804,44.1762789 47.6654804,45.5996796 Z" id="path-7"></path>
+        <filter x="-174.7%" y="-97.0%" width="449.3%" height="487.9%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M38.6476868,50.7556644 C38.6476868,48.2637959 36.62979,46.2444444 34.139114,46.2444444 C31.648654,46.2444444 29.6298932,48.2637959 29.6298932,50.7556644 C29.6298932,53.2466622 31.648654,55.2666667 34.139114,55.2666667 C36.62979,55.2666667 38.6476868,53.2466622 38.6476868,50.7556644 Z" id="path-9"></path>
+        <filter x="-99.8%" y="-55.4%" width="299.6%" height="321.7%" filterUnits="objectBoundingBox" id="filter-10">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-11" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="38" font-weight="normal" fill="#FFFFFF">
+            <tspan x="101.475633" y="56">Pizza4Pickup</tspan>
+        </text>
+        <filter x="-3.3%" y="-7.1%" width="106.6%" height="128.5%" filterUnits="objectBoundingBox" id="filter-12">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="logopizza" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(10.000000, 2.000000)">
+            <g id="logoicon">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <g id="dotpizza1">
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+            </g>
+            <g id="dotpizza2">
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+            </g>
+            <g id="dotpizza3">
+                <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+            </g>
+            <g id="dotpizza4">
+                <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-9"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
+            </g>
+            <g id="Pizza4Pickup" fill="#FFFFFF" fill-opacity="1">
+                <use filter="url(#filter-12)" xlink:href="#text-11"></use>
+                <use xlink:href="#text-11"></use>
+            </g>
+        </g>
+    </g>
+</svg>
