@@ -5,6 +5,9 @@ body {
     color: #244751;
   }
 }
+h2 {
+  color: #ffffff;
+}
 
 #minutes {
  width: 50%;
@@ -57,10 +60,10 @@ div {
   text-align: center;
 }
 .minus:hover{
-  background-color: #717fe0 !important;
+  background-color: #DB2929 !important;
 }
 .plus:hover{
-  background-color: #717fe0 !important;
+  background-color: #DB2929 !important;
 }
 /*Prevent text selection*/
 span{
@@ -72,7 +75,7 @@ input{
   border: 0;
   width: 2%;
 }
-nput::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -87,4 +90,18 @@ input:disabled{
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.card{
+  margin: 1em;
+}
+
+.nav-link:not(.active) {
+  background-color: white;
+  color: black;
+}
+
+.nav-link:(.active) {
+  background-color: black;
+  color: white;
 }
