@@ -155,18 +155,7 @@ app.get("/:id", (req, res) => {
 
           console.log('hey')
           let orderedItems;
-          let templateVars = {
-            orderedItems: orderedItems,
-            orderId: req.params.id,
-            orderAmount: (results[0].cost) ? results[0].cost : 0,
-            estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
-            items: pizzaAmount + extraAmount,
-            pickedUp: (results[0].time_pickup) ? results[0].time_pickup : "picked up",
-            customerId: (results[0].customer_id) ? results[0].customer_id : "no id yet",
-            time_confirmed: (results[0].time_confirmed) ? results[0].time_confirmed : "yo"
-          };
           if (results[0].pizza_order) {
-            console.log("hey yo", results[0].pizza_order);
             const pizzaOrder = results[0].pizza_order.pizzas;
 
             function returnPizzas () {
@@ -213,17 +202,17 @@ app.get("/:id", (req, res) => {
 
         let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizzas.length : 0;
         let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
-        templateVars = {
+        let templateVars = {
           orderedItems: orderedItems,
           orderId: req.params.id,
           orderAmount: (results[0].cost) ? results[0].cost : 0,
           estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
           items: pizzaAmount + extraAmount,
-          pickedUp: (results[0].time_pickup) ? results[0].time_pickup : "picked up",
-          customerId: (results[0].customer_id) ? results[0].customer_id : "no id yet",
-          time_confirmed: (results[0].time_confirmed) ? results[0].time_confirmed : "time confirmed"
+          pickedUp: (results[0].time_pickup) ? results[0].time_pickup : null,
+          customerId: (results[0].customer_id) ? results[0].customer_id : null,
+          time_confirmed: (results[0].time_confirmed) ? results[0].time_confirmed : null
         };
-
+        console.log('anon---', results[0])
         res.render('confirmation', templateVars);
     });
   });
