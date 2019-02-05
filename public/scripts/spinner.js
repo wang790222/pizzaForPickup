@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-    $(document).ready(function (e){
-       $( "form#customer" ).append(`
+
+$( "#processing" ).append(`
     <div class="box">
       <style scoped>
         * {
@@ -9,12 +9,12 @@ $(document).ready(function() {
     }
     .box {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 200px;
+      height: 200px;
       display: block;
       background: #FFFFFF;
       margin: auto;
-      margin-top: 15%;
+      margin-top: 10px;
       border-radius: 50%;
     }
     .pizza-slice-1 {
@@ -413,5 +413,32 @@ $(document).ready(function() {
       </div>
     </div>`
     )
-    })
+
+
+
+
+
+$('#in_progress').append(`<p id="demo"></p>
+        <script>
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10)
+                    seconds = parseInt(timer % 60, 10);
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    display.textContent = minutes + ":" + seconds;
+                    if (--timer < 0) {
+                        timer = duration;
+                    }
+                }, 1000);
+            }
+                var time = 60 *  parseInt($('#script').attr('class'))
+                display = document.querySelector('#demo');
+                startTimer(time, display)
+        </script>`)
+
+
+
+
   })
