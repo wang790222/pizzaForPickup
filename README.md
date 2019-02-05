@@ -1,6 +1,6 @@
 # 🍕 Pizza4Pickup 🍕
 
-A full-stack application that caters to hungry customers looking to order pizza, and a single restaurant who provides the pizzas. Users from both sides can use this app to manage the status of the orders and communicate throughout the order process.
+A full-stack application that caters to hungry customers looking to order pizza, and a single restaurant who provides the pizzas. Users from both sides can use this app to manage the status of the orders and communicate throughout the pick up process.
 
 
 ## Final Product
@@ -53,7 +53,7 @@ A full-stack application that caters to hungry customers looking to order pizza,
 
 ✅ Recieve a text message when their order is confirmed by the restaurant
 
-✅ Will recieve another message when it is time to pick up their order
+✅ Will recieve a second text message when it is time to pick up their order
 
 
 ##### Restaurant (/restaurant)
@@ -64,7 +64,9 @@ A full-stack application that caters to hungry customers looking to order pizza,
 
 ✅ Can update or confirm estimated pick up time
 
-Enjoy
+
+
+##### Enjoy!
 
 
 
