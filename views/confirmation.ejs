@@ -3,7 +3,7 @@
 <% include ./partials/_header %>
 <script src="/scripts/spinner.js"></script>
 <% let countdown = estimatedTime * 60000 %>
-<script type='text/javascript'>setTimeout("location.reload();", <%= countdown %>);</script>
+<script id="script" class="<%=estimatedTime%>" type='text/javascript'>setTimeout("location.reload();", <%= countdown %>);</script>
 </div>
   <div class="container">
  <h2>Order Number: <%= orderId %> </h2>
@@ -54,12 +54,12 @@
 <% if (!pickedUp && customerId) { %>
   <div class="container">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" id="processing">
   <h4>  <br> THANK YOU <br> </h4>
   <h6> Your order is being processed. We will continue to update you! </h6>
     <ul class="list-group list-group-flush">
-  <% if (!pickedUp && customerId) { %><li id="recieved" class="list-group-item">1. RECIEVED ORDER</li><% } %>
-  <% if (!pickedUp && customerId && time_confirmed) { %><li id="in_progress" class="<%= estimatedTime %>">2. IN PROGRESS</li><% } %>
+  <% if (!pickedUp && customerId && !time_confirmed) { %><li id="recieved" class="list-group-item">1. RECIEVED ORDER</li><% } %>
+  <% if (!pickedUp && customerId && time_confirmed) { %><li id="in_progress" class="list-group-item">2. IN PROGRESS</li><% } %>
 </ul>
 </div>
   </div>
