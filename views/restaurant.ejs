@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <% include ./partials/_header %>
-<% include ./partials/_footer %>
   <body>
    <div class="container">
   <ul><h2> 🔥 Orders to Action 🔥</h2>
@@ -44,11 +43,17 @@
               /
               <%= orders[i]['pizza_order'].pizzas[j].crust %>
 
-              <% if (orders[i]['pizza_order'].pizzas[j].topping !== undefined){ %>
+              <% console.log(orders[i]['pizza_order'].pizzas[j]); %>
+
+              <% if (orders[i]['pizza_order'].pizzas[j].toppings.length > 0){ %>
                 /
-                <%= orders[i]['pizza_order'].pizzas[j].topping %>
+                <% for (let k = 0; k < orders[i]['pizza_order'].pizzas[j].toppings.length; k++) { %>
+                <%= orders[i]['pizza_order'].pizzas[j].toppings[k] %>
+                -
+                <% } %>
+
               <% } else { %>
-                / No Topping
+                / basic tomato Sauce & mozarella cheese
               <% } %>
               <br>
             <% } %>
