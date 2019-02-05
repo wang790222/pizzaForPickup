@@ -219,14 +219,14 @@ $(document).ready(function() {
     order.estimated_time += pizza.time;
     order.pizza_order.pizzas.push(pizza);
 
-    let pizzaIfo = `${pizza.size} / ${pizza.crust} / `;
+    let pizzaInfo = `${pizza.size} / ${pizza.crust} / `;
     let toppingStr = [];
     for (let topping of pizza.toppings) {
       toppingStr.push(topping);
     }
-    pizzaIfo += toppingStr.join(" - ");
+    pizzaInfo += toppingStr.join(" - ");
 
-    let appendStr = `<li class="qty mt-5"> ${pizzaIfo} <span class="minus bg-dark">-</span> </li>`;
+    let appendStr = `<li class="qty mt-5"> ${pizzaInfo} <span class="minus bg-dark">-</span> </li>`;
 
     resetOptions();
     updateTimeMoney();
