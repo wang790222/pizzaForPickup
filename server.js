@@ -134,26 +134,7 @@ app.get("/restaurant", (req, res) => {
 
     const confirmedOrders = values[0];
     const feedbacks = values[2];
-/*
-    const numMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    let dateDisplay = [];
-    let pizzaDisplay = [];
-    let extraDisplay = [];
-
-    for (let order in confirmedOrders) {
-      let timePlaced = order.time_placed;
-      let date = timePlaced.split(" ");
-      let year = date.split("-")[0].substring(2,3);
-      console.log(year);
-      let month = numMonth[parseInt(date.split("-")[1])];
-      console.log(month);
-      let day = timePlaced.split("-")[2];
-      console.log(day);
-    }
-*/
-
-    console.log(confirmedOrders);
     let templateVars = {
       orders: confirmedOrders,
       feedbacks: feedbacks,
@@ -298,11 +279,12 @@ app.post("/customer", (req, res) => {
 
 app.post("/confirm/orders", (req, res) => {
 
-  let est = parseInt(req.body.timeAndOrderId.split(",")[0]);
-  let orderId = parseInt(req.body.timeAndOrderId.split(",")[1]);
+  let est = parseInt(req.body.est);
+  let orderId = parseInt(req.body.order_id);
+  console.log("id:", orderId);
   let tempConfirmedTime = moment().add(est, 'm').tz("America/New_York").format();
   let confirmedTime = tempConfirmedTime.split("T")[0] + " " + tempConfirmedTime.split("T")[1].split("-")[0];
-
+  console.log("confirmedTime:", confirmedTime);
   new Promise(function(resolve, reject) {
     knex('order')
     .where(
