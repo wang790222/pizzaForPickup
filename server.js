@@ -211,9 +211,9 @@ app.get("/:id", (req, res) => {
           estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
           items: pizzaAmount + extraAmount,
           pickedUp: results[0].time_pickup,
-          customerId: results[0].customer_id
+          customerId: results[0].customer_id,
+          time_confirmed: results[0].time_confirmed
         };
-
         res.render('confirmation', templateVars);
     });
   });
@@ -268,9 +268,9 @@ app.post("/customer", (req, res) => {
         cb(parseInt(id));
 
       client.messages.create({
-        body: 'New Pizza Order!',
-        to: '+15149437993',   //Tim's number
-        from: '+18737714590'
+        // body: 'New Pizza Order!',
+        // to: '+15149437993',   //Tim's number
+        // from: '+18737714590'
         })
         .then((message) => console.log(message.sid))
         .done();
@@ -305,13 +305,13 @@ app.post("/confirm/orders", (req, res) => {
     .then(function(values) {
       console.log("Confirm.");
 
-      client.messages.create({
-            body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
-            to: '+16476731359',   //Yu-Ning's number
-            from: '+18737714590'
-      })
-      .then((message) => console.log(message.sid))
-      .done();
+      // client.messages.create({
+      //       body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
+      //       to: '+16476731359',   //Yu-Ning's number
+      //       from: '+18737714590'
+      // })
+      // .then((message) => console.log(message.sid))
+      // .done();
 
       setPickupMsg(est, orderId);
 
@@ -362,9 +362,9 @@ function setPickupMsg(mins, orderId) {
   setTimeout(function(){
 
     client.messages.create({
-          body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
-          to: '+16476731359',   //Yu-Ning's number
-          from: '+18737714590'
+          // body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
+          // to: '+16476731359',   //Yu-Ning's number
+          // from: '+18737714590'
     })
     .then((message) => console.log(message.sid))
     .done();
