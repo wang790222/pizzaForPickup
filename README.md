@@ -6,8 +6,8 @@ Is an application for both hungry customers looking for Pizza's and the restaura
 ## Final Product
 
 ![Pizza Homepage](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_homepage.gif)
-![Pizza Creator](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_visual_creator.gif)
 ![Orders Page](https://github.com/wang790222/pizzaForPickup/blob/master/public/Screen%20Shot%202019-02-05%20at%2010.39.39%20AM.png)
+![Pizza Creator](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_visual_creator.gif)
 
 ## Dependencies
 
