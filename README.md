@@ -6,8 +6,11 @@ A full-stack application that caters to hungry customers looking to order pizza,
 ## Final Product
 
 ![Pizza Homepage](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_homepage.gif)
-![Order Summary](https://github.com/wang790222/pizzaForPickup/blob/master/public/Screenshots_Pizza4Pickup/Screen%20Shot%202019-02-04%20at%204.38.03%20PM.png?raw=true)
+![Ordered Pizzas](https://github.com/wang790222/pizzaForPickup/blob/master/public/Screenshots_Pizza4Pickup/Pizza%20Form.png?raw=true)
 ![Pizza Creator](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_visual_creator.gif)
+![Order Summary](https://github.com/wang790222/pizzaForPickup/blob/master/public/Screenshots_Pizza4Pickup/Order%20Summary.png?raw=true)
+![Restaurants Page](https://github.com/wang790222/pizzaForPickup/blob/master/public/Screenshots_Pizza4Pickup/Restaurant%20Page.png?raw=true)
+
 
 ## Dependencies
 
@@ -34,13 +37,15 @@ A full-stack application that caters to hungry customers looking to order pizza,
 
 ### Pages and Functionality
 
-Customers (index page)
+##### Customers (index, confirmation page)
 
 ✅ Build custom pizzas
 
 ✅ See a live estimate of the total price and preparation time
 
 ✅ See a preview of the custom pizza they're building
+
+✅ Can add or delete pizzas and extras before checking out
 
 ✅ After checking out, will see a summary of ordered items, along with total price before confirming their order
 
@@ -51,7 +56,7 @@ Customers (index page)
 ✅ Will recieve another message when it is time to pick up their order
 
 
-Restaurant (/restaurant)
+##### Restaurant (/restaurant)
 
 ✅ Recieve text messages for every incoming order
 
