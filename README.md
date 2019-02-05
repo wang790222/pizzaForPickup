@@ -1,29 +1,45 @@
-# Node Skeleton
+# 🍕 Pizza4Pickup 🍕
 
-## Project Setup
+Is an application for both hungry customers looking for Pizza's and the restaurant to manage the orders and communication.
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
 
-## Getting Started
+## Final Product
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+![Pizza Homepage](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_homepage.gif)
+![Orders Page](https://github.com/wang790222/pizzaForPickup/blob/master/public/Screen%20Shot%202019-02-05%20at%2010.39.39%20AM.png)
+![Pizza Creator](https://github.com/wang790222/pizzaForPickup/blob/master/public/pizza_visual_creator.gif)
 
 ## Dependencies
 
+- Express
+- bodyParser
 - Node 5.10.x or above
-- NPM 3.8.x or above
+- sass
+- moment
+- moment-timezone
+- knex
+- morgan
+(twilio if you wanted to run the text message component)
+
+## Getting Started
+
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
+4. Go to <http://localhost:8080/> in your browser.
+
+1️⃣ Install all dependencies (using `npm install` command).
+
+2️⃣ Run the development web server using the `node express_server.js` command simply type `npm run local` volià!
+
+3️⃣ Go to localhost `localhost:8080`
+
+Here you are able to:
+
+✅ Customers: Order see the price, time estimate and the pizza generator (/index)
+
+✅ Restaurant: See orders, text message new ones come in with ability to update or confirm estimate (/restaurant)
+
+✅ Customers: Receive text updates on the estimated time and mark pick up times
+
+Enjoy
