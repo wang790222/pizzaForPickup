@@ -205,7 +205,7 @@ app.get("/:id", (req, res) => {
           estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
           items: pizzaAmount + extraAmount,
           pickedUp: results[0].time_pickup,
-          confirmed: results[0].time_confirmed;
+          confirmed: results[0].time_confirmed,
           customerId: results[0].customer_id
         };
 
