@@ -153,11 +153,20 @@ app.get("/:id", (req, res) => {
         .where("id", "=", req.params.id)
         .then((results) => {
 
-
+          console.log('hey')
           let orderedItems;
-
+          let templateVars = {
+            orderedItems: orderedItems,
+            orderId: req.params.id,
+            orderAmount: (results[0].cost) ? results[0].cost : 0,
+            estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
+            items: pizzaAmount + extraAmount,
+            pickedUp: (results[0].time_pickup) ? results[0].time_pickup : "picked up",
+            customerId: (results[0].customer_id) ? results[0].customer_id : "no id yet",
+            time_confirmed: (results[0].time_confirmed) ? results[0].time_confirmed : "yo"
+          };
           if (results[0].pizza_order) {
-            console.log(results[0].pizza_order);
+            console.log("hey yo", results[0].pizza_order);
             const pizzaOrder = results[0].pizza_order.pizzas;
 
             function returnPizzas () {
@@ -204,14 +213,15 @@ app.get("/:id", (req, res) => {
 
         let pizzaAmount = (results[0].pizza_order) ? results[0].pizza_order.pizzas.length : 0;
         let extraAmount = (results[0].extra) ? results[0].extra.extra.length : 0;
-        let templateVars = {
+        templateVars = {
           orderedItems: orderedItems,
           orderId: req.params.id,
           orderAmount: (results[0].cost) ? results[0].cost : 0,
           estimatedTime: (results[0].estimated_time) ? results[0].estimated_time : 0,
           items: pizzaAmount + extraAmount,
-          pickedUp: results[0].time_pickup,
-          customerId: results[0].customer_id
+          pickedUp: (results[0].time_pickup) ? results[0].time_pickup : "picked up",
+          customerId: (results[0].customer_id) ? results[0].customer_id : "no id yet",
+          time_confirmed: (results[0].time_confirmed) ? results[0].time_confirmed : "time confirmed"
         };
 
         res.render('confirmation', templateVars);
@@ -268,9 +278,9 @@ app.post("/customer", (req, res) => {
         cb(parseInt(id));
 
       client.messages.create({
-        body: 'New Pizza Order!',
-        to: '+15149437993',   //Tim's number
-        from: '+18737714590'
+        // body: 'New Pizza Order!',
+        // to: '+16476731359',   //Yu-Ning's number
+        // from: '+18737714590'
         })
         .then((message) => console.log(message.sid))
         .done();
@@ -306,9 +316,9 @@ app.post("/confirm/orders", (req, res) => {
       console.log("Confirm.");
 
       client.messages.create({
-            body: `Your Order Is Confirmed! http://172.46.0.220:8080/${orderId}`,
-            to: '+16476731359',   //Yu-Ning's number
-            from: '+18737714590'
+            // body: `Your Order Is Confirmed! http://192.168.1.108:8080/${orderId}`,
+            // to: '+15149437993',   //Tim's number
+            // from: '+18737714590'
       })
       .then((message) => console.log(message.sid))
       .done();
@@ -362,12 +372,12 @@ function setPickupMsg(mins, orderId) {
   setTimeout(function(){
 
     client.messages.create({
-          body: `Pick Your Pizza! http://172.46.0.220:8080/${orderId}`,
-          to: '+16476731359',   //Yu-Ning's number
-          from: '+18737714590'
+          // body: `Pick Up Your Pizza! http://192.168.1.108:8080/${orderId}`,
+          // to: '+15149437993',   //Tim's number
+          // from: '+18737714590'
     })
     .then((message) => console.log(message.sid))
     .done();
 
-  }, mins * 6000);
+  }, mins * 60000);
 }
