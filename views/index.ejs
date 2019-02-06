@@ -560,13 +560,11 @@
                   <p><%= extras[i]['name'] + "   " %>$<%= extras[i]['cost'] %></p>
                   <div class="qty mb-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
                       <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="0">
+                      <input type="number" class="count" name="qty" value="0" disabled>
                       <span class="plus bg-dark">+</span>
                   </div>
                 </div>
                 <% } %>
-
-
               </ul>
             </div>
           </div>
