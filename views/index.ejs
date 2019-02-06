@@ -45,7 +45,7 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Build Your Own Pizza</h5>
+              <h4 class="card-title">Build Your Own Pizza</h4>
               <p class="card-text">Build your own pizza! Choose a size and crust style. Defaults with cheese and tomato sauce.</p>
                   <p>
             <button class="btn btn-danger" id="add_new_pizza" type="button" data-toggle="collapse" data-target="#collapsePizzaForm" aria-expanded="true" aria-controls="collapsePizzaForm">
@@ -554,12 +554,11 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body ">
-              <h5 class="card-title">Great Sides & Extras</h5>
+              <h4 class="card-title">Great Sides & Extras</h4>
               <ul>
                 <% for ( i = 0; i < extras.length; i++) { %>
                 <div class="extra">
-                  <p><%= extras[i]['name'] %></p>
-                  <p>$<%= extras[i]['cost'] %></p>
+                  <p><%= extras[i]['name'] + "   " %>$<%= extras[i]['cost'] %></p>
                   <div class="qty mb-5" id="<%= extras[i]['name'].toLowerCase().split(' ').join('') %>" data-time="<%= extras[i]['time_prep'] %>" data-cost="<%= extras[i]['cost'] %>">
                       <span class="minus bg-dark">-</span>
                       <input type="number" class="count" name="qty" value="0">
