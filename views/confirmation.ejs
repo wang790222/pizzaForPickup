@@ -4,12 +4,12 @@
 <script src="/scripts/spinner.js"></script>
 <% let countdown = estimatedTime * 60000 %>
 <script id="script" class="<%=estimatedTime%>" type='text/javascript'>setTimeout("location.reload();", <%= countdown %>);</script>
-</div>
-  <div class="container">
- <h2>Order Number: <%= orderId %> </h2>
-
+  <div class="container" style="background-image: url('../pizzahero.jpg');">
+    <br>
+      <h2>Order Number: <%= orderId %> </h2>
+    <br>
 <span>
-</div>
+
   <div class="container">
     <div class="card" style="padding-bottom: 100px;">
 
@@ -45,21 +45,22 @@
 
 <% if (!pickedUp && !customerId) { %>
   <h4>  <br> Details for Your Pickup <br> </h4>
-      <form id="customer">
-        <div class="form-group">
+      <form id="customer" style="width: 50%; margin-left: 17em;">
+        <span class="form-group">
           <br>
           <label for="phonenumber">Phone Number</label>
           <input name="phonenumber" type="text" class="form-control" maxlength="10" placeholder="Enter Phone Number">
           <small text text-muted">You will recieve a text confirmation of the estimated pickup time. We will never share your information with anyone else.</small>
-        </div>
-        <div class="form-group">
+        </span>
+        <br/>
+        <span class="form-group">
           <label for="customername" >Name</label>
           <input name="customername" type="text" class="form-control" maxlength="80" placeholder="Name">
-        </div>
-        <div class="form-group">
+        </span>
+        <span class="form-group">
           <label for="postcode">Postal Code</label>
           <input name="postcode" type="text" class="form-control" size="7" maxlength="6" placeholder="M5V1Y2">
-        </div>
+        </span>
         <br>
         <input name="order_id" type=text hidden value="<%= orderId %>">
         <button id="confirm" class="btn btn-warning">Confirm Order</button>
@@ -109,7 +110,7 @@
 </div>
 </div>
 <% }; %>
-
+</div>
 </body>
 </html>
 
