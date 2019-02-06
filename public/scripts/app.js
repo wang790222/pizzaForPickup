@@ -196,51 +196,55 @@ $(document).ready(function() {
       toastr.warning("please select size and crust");
       return;
     }
-      $("#extracheeseimg").hide();
-      $("#onionsimg").hide();
-      $("#pepperoniimg").hide();
-      $("#mushroomsimg").hide();
-      $("#baconimg").hide();
-      $("#greenpeppersimg").hide();
-      $("#goatcheeseimg").hide();
-      $("#spinachimg").hide();
-      $("#olivesimg").hide();
-      $("#truffleimg").hide();
-      $("#largeimg").hide();
-      $("#mediumimg").hide();
-      $("#smallimg").hide();
-      $("#crustthinimg").hide();
-      $("#crustregularimg").hide();
-      $("#cruststuffedimg").hide();
-      $("#placeholderimg").show();
 
+    $("#extracheeseimg").hide();
+    $("#onionsimg").hide();
+    $("#pepperoniimg").hide();
+    $("#mushroomsimg").hide();
+    $("#baconimg").hide();
+    $("#greenpeppersimg").hide();
+    $("#goatcheeseimg").hide();
+    $("#spinachimg").hide();
+    $("#olivesimg").hide();
+    $("#truffleimg").hide();
+    $("#largeimg").hide();
+    $("#mediumimg").hide();
+    $("#smallimg").hide();
+    $("#crustthinimg").hide();
+    $("#crustregularimg").hide();
+    $("#cruststuffedimg").hide();
+    $("#placeholderimg").show();
 
     order.cost += pizza.cost;
     order.estimated_time += pizza.time;
     order.pizza_order.pizzas.push(pizza);
 
-    let pizzaInfo = `${pizza.size} / ${pizza.crust} crust / `;
-    let toppingStr = [];
-    for (let topping of pizza.toppings) {
-      toppingStr.push(topping);
-    }
-    pizzaInfo += toppingStr.join(" - ");
+    let pizzaInfo = `${pizza.size} / ${pizza.crust} crust `;
 
-    let appendStr = `<li class="qty mt-5" style="text-align: left;"> ${pizzaInfo} <span class="minus bg-dark">-</span> </li>`;
+    if (pizza.toppings.length > 0) {
+
+      pizzaInfo += `/ `;
+
+      let toppingStr = [];
+      for (let topping of pizza.toppings) {
+        toppingStr.push(topping);
+      }
+      pizzaInfo += toppingStr.join(" - ");
+    }
+
+    let appendStr = `<li class="qty mt-5 added_pizza" style="text-align: left;"> ${pizzaInfo} <span class="minus bg-dark">-</span> </li>`;
 
     resetOptions();
     updateTimeMoney();
     $('#add_new_pizza').click();
 
-    $("#pizza_info").append(function() {
-      return $(appendStr).click(deletePizzaHandler);
-    });
+    $("#pizza_info").append(appendStr);
   });
 
-  function deletePizzaHandler() {
+  $("#pizza_info").delegate("li > span", "click", function() {
 
-    let costDeduct = order.pizza_order.pizzas[($(this).index())].cost;
-    let timeDeduct = order.pizza_order.pizzas[($(this).index())].time;
+    let costDeduct = order.pizza_order.pizzas[($(this).parent().index())].cost;
+    let timeDeduct = order.pizza_order.pizzas[($(this).parent().index())].time;
 
     order.cost -= costDeduct;
     order.estimated_time -= timeDeduct;
@@ -248,9 +252,9 @@ $(document).ready(function() {
     updateTimeMoney();
     resetOptions();
 
-    order.pizza_order.pizzas.splice($(this).index(), 1);
-    $(this).remove();
-  }
+    order.pizza_order.pizzas.splice($(this).parent().index(), 1);
+    $(this).parent().remove();
+  });
 
   function resetOptions() {
 
