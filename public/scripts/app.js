@@ -280,8 +280,8 @@ $(document).ready(function() {
 
   $("#est").remove();
   $("#total_amount").remove();
-    let estAndMoneyStr = `<p id="est">Estimated time: ${order.estimated_time + pizza.time} mins</p>
-                          <p id="total_amount">Total: ${order.cost + pizza.cost} $</p>`;
+    let estAndMoneyStr = `<p id="est">Preparation time: ${order.estimated_time + pizza.time} mins</p>
+                          <p id="total_amount">Total: $${order.cost + pizza.cost}</p>`;
     $("#time_money").append(estAndMoneyStr);
   }
 
