@@ -219,14 +219,14 @@ $(document).ready(function() {
     order.estimated_time += pizza.time;
     order.pizza_order.pizzas.push(pizza);
 
-    let pizzaInfo = `${pizza.size} / ${pizza.crust} / `;
+    let pizzaInfo = `${pizza.size} / ${pizza.crust} crust / `;
     let toppingStr = [];
     for (let topping of pizza.toppings) {
       toppingStr.push(topping);
     }
     pizzaInfo += toppingStr.join(" - ");
 
-    let appendStr = `<li class="qty mt-5"> ${pizzaInfo} <span class="minus bg-dark">-</span> </li>`;
+    let appendStr = `<li class="qty mt-5" style="text-align: left;"> ${pizzaInfo} <span class="minus bg-dark">-</span> </li>`;
 
     resetOptions();
     updateTimeMoney();
@@ -281,7 +281,7 @@ $(document).ready(function() {
   $("#est").remove();
   $("#total_amount").remove();
     let estAndMoneyStr = `<p id="est">Preparation time: ${order.estimated_time + pizza.time} mins</p>
-                          <p id="total_amount">Total: $${order.cost + pizza.cost}</p>`;
+                          <p id="total_amount"><b>Total: $${order.cost + pizza.cost}<b\></p>`;
     $("#time_money").append(estAndMoneyStr);
   }
 
