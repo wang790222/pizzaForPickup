@@ -15,11 +15,6 @@ const knex          = require("knex")(knexConfig[ENV]);
 const morgan        = require('morgan');
 const knexLogger    = require('knex-logger');
 
-// Seperated Routes for each Resource
-const crustRoutes   = require("./routes/crust");
-const sizeRoutes    = require("./routes/size");
-const toppingRoutes = require("./routes/topping");
-
 var accountSid      = process.env.TWILIO_ACCOUNT_SID;
 var authToken       = process.env.TWILIO_AUTHTOKEN;
 
@@ -43,9 +38,6 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-
-// Mount all resource routes
-app.use("/api/crust", crustRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
