@@ -40,16 +40,10 @@
           <% if (orders[i]['pizza_order'] !== null){ %>
             <% for (j = 0 ; j < orders[i]['pizza_order'].pizzas.length; j++) { %>
               <%= orders[i]['pizza_order'].pizzas[j].size %>
-              /
-              <%= orders[i]['pizza_order'].pizzas[j].crust %>
-
-              <% if (orders[i]['pizza_order'].pizzas[j].toppings.length > 0){ %>
                 /
-                <% for (let k = 0; k < orders[i]['pizza_order'].pizzas[j].toppings.length; k++) { %>
-                <%= orders[i]['pizza_order'].pizzas[j].toppings[k] %>
-                -
-                <% } %>
-
+              <%= orders[i]['pizza_order'].pizzas[j].crust %>
+              <% if (orders[i]['pizza_order'].pizzas[j].toppings !== undefined) { %>
+                / <%= orders[i]['pizza_order'].pizzas[j].toppings %>
               <% } else { %>
                 / basic tomato Sauce & mozarella cheese
               <% } %>
@@ -67,7 +61,7 @@
         <td><%= orders[i]['name'] %></td>
         <td><%= orders[i]['phone'] %></td>
         <td>
-          <% if(orders[i]['time_confirmed'] === null){ %>
+          <% if(!orders[i]['time_confirmed']){ %>
             <form id="confirmForm" class="form-inline" action="/confirm/orders" method="POST" >
               <input style="width:50%;" class="form-control" placeholder="<%= orders[i]['estimated_time'] %>" name="est" >
               <input type="text" name="order_id" value="<%= orders[i]['id'] %>" hidden>
@@ -84,7 +78,11 @@
         </td>
         <td>
           <form action="/pickup/orders" method="POST" >
-            <button type="submit" class="btn btn-dark mb-2" margin-top=2% name="order_id" value="<%= orders[i]['id'] %>">Picked Up</button>
+            <% if(!orders[i]['time_confirmed']) { %>
+              <button type="submit" class="btn btn-dark mb-2" margin-top=2% name="order_id" value="<%= orders[i]['id'] %>" disabled>Pick UP</button>
+            <% } else { %>
+              <button type="submit" class="btn btn-dark mb-2" margin-top=2% name="order_id" value="<%= orders[i]['id'] %>">Pick Up</button>
+            <% } %>
           </form>
         </td>
       </tr>
